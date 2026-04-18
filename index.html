@@ -38,21 +38,41 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(12,11,9,0.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(240,235,225,0.06)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
-.nav-logo{font-family:var(--serif);font-size:20px;color:var(--cream);text-decoration:none;letter-spacing:0.01em;font-style:italic;flex-shrink:0}
-.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
-.nav-links a{font-size:12px;letter-spacing:0.1em;text-transform:lowercase;color:var(--cream-35);text-decoration:none;padding:6px 14px;border-radius:5px;transition:color 0.25s,background 0.25s}
-.nav-links a:hover{color:var(--cream);background:var(--cream-04)}
-.nav-right{display:flex;align-items:center;gap:10px}
-.lang-toggle{display:flex;gap:2px;background:rgba(240,235,225,0.04);border:1px solid rgba(240,235,225,0.08);border-radius:6px;padding:2px}
-.lang-btn{background:none;border:none;color:var(--cream-35);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.08em;padding:5px 10px;border-radius:4px;cursor:pointer;transition:color 0.25s,background 0.25s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;gap:40px}
+.nav-logo{font-family:var(--serif);font-size:22px;color:var(--cream);text-decoration:none;letter-spacing:0.01em;font-style:italic;flex-shrink:0}
+
+.nav-center{display:flex;align-items:center;gap:4px;list-style:none;flex:1;justify-content:center}
+.nav-center a{
+  position:relative;
+  font-size:13px;font-weight:400;letter-spacing:0.02em;
+  text-transform:lowercase;
+  color:rgba(240,235,225,0.65);
+  text-decoration:none;
+  padding:8px 18px;
+  transition:color 0.25s ease;
+}
+.nav-center a::after{
+  content:'';position:absolute;left:18px;right:18px;bottom:4px;height:1px;
+  background:var(--gold);
+  transform:scaleX(0);transform-origin:center;
+  transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.nav-center a:hover{color:var(--cream)}
+.nav-center a:hover::after{transform:scaleX(1)}
+
+.nav-right{display:flex;align-items:center;gap:18px}
+.lang-toggle{display:flex;align-items:center;gap:2px;font-family:var(--mono);font-size:11px;letter-spacing:0.12em}
+.lang-btn{background:none;border:none;color:var(--cream-35);font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:0.1em;padding:4px 6px;cursor:pointer;transition:color 0.25s}
 .lang-btn:hover{color:var(--cream)}
-.lang-btn.active{background:rgba(201,168,76,0.15);color:var(--gold)}
-.nav-cta{font-size:12px;letter-spacing:0.08em;font-family:var(--sans);font-weight:500;color:#0C0B09;background:var(--gold);padding:7px 18px;border-radius:6px;text-decoration:none;border:none;cursor:pointer;transition:opacity 0.2s;white-space:nowrap}
-.nav-cta:hover{opacity:0.85}
+.lang-btn.active{color:var(--gold)}
+.lang-sep{color:var(--cream-15);font-size:11px;user-select:none}
+
+.nav-cta{font-size:12px;letter-spacing:0.05em;font-family:var(--sans);font-weight:600;color:#0C0B09;background:var(--gold);padding:9px 20px;border-radius:6px;text-decoration:none;border:none;cursor:pointer;transition:opacity 0.2s,transform 0.2s;white-space:nowrap}
+.nav-cta:hover{opacity:0.9;transform:translateY(-1px)}
+
 .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
 .nav-toggle span{display:block;width:22px;height:1.5px;background:var(--cream-60);transition:all 0.3s}
-.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(12,11,9,0.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(240,235,225,0.06);padding:20px 28px 28px;z-index:99;flex-direction:column;gap:4px}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(12,11,9,0.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(240,235,225,0.06);padding:20px 28px 28px;z-index:99;flex-direction:column;gap:4px}
 .mobile-menu a{font-size:15px;color:var(--cream-60);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(240,235,225,0.05);display:block;letter-spacing:0.05em;transition:color 0.2s}
 .mobile-menu a:last-child{border-bottom:none}
 .mobile-menu.open{display:flex}
@@ -66,6 +86,47 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(12,11,9,0.88
 .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .btn-primary{background:var(--gold);color:#0C0B09;font-family:var(--sans);font-size:15px;font-weight:600;padding:15px 32px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity 0.2s,transform 0.2s;letter-spacing:-0.01em}
 .btn-primary:hover{opacity:0.88;transform:translateY(-1px)}
+
+/* Cursor-tracking glow effect on gold buttons */
+.glow-btn{position:relative;overflow:hidden;isolation:isolate}
+.glow-btn::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:1.5px;
+  background:radial-gradient(
+    180px circle at var(--mx,50%) var(--my,50%),
+    rgba(255,240,180,0.95),
+    rgba(201,168,76,0.2) 40%,
+    transparent 70%
+  );
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  opacity:0;
+  transition:opacity 0.25s ease;
+  pointer-events:none;
+  z-index:1;
+}
+.glow-btn:hover::before{opacity:1}
+.glow-btn::after{
+  content:'';
+  position:absolute;
+  inset:-20px;
+  border-radius:inherit;
+  background:radial-gradient(
+    100px circle at var(--mx,50%) var(--my,50%),
+    rgba(201,168,76,0.35),
+    transparent 60%
+  );
+  opacity:0;
+  transition:opacity 0.3s ease;
+  pointer-events:none;
+  z-index:-1;
+  filter:blur(8px);
+}
+.glow-btn:hover::after{opacity:1}
 .btn-outline{background:transparent;color:var(--cream-60);font-family:var(--sans);font-size:15px;font-weight:400;padding:14px 32px;border-radius:8px;border:1px solid var(--cream-15);cursor:pointer;text-decoration:none;display:inline-block;transition:border-color 0.25s,color 0.25s}
 .btn-outline:hover{border-color:rgba(240,235,225,0.35);color:var(--cream)}
 
@@ -221,7 +282,7 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
 <nav>
   <div class="container nav-inner">
     <a href="#top" class="nav-logo">Savant</a>
-    <ul class="nav-links">
+    <ul class="nav-center">
       <li><a href="#toolkit" data-en="toolkit" data-ru="инструменты">toolkit</a></li>
       <li><a href="#process" data-en="process" data-ru="процесс">process</a></li>
       <li><a href="#faq" data-en="faq" data-ru="вопросы">faq</a></li>
@@ -229,9 +290,10 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
     <div class="nav-right">
       <div class="lang-toggle">
         <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+        <span class="lang-sep">/</span>
         <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
       </div>
-      <a href="#contact" class="nav-cta" data-en="Book a session" data-ru="Записаться">Book a session</a>
+      <a href="#contact" class="nav-cta glow-btn" data-en="Book a session" data-ru="Записаться">Book a session</a>
     </div>
     <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -256,7 +318,7 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
     </h1>
     <p class="hero-sub fu d4" data-en="We extract how your CEO sells and turn it into a tool your whole team uses every day. New reps go from 3 months of ramp to closing deals on day 3." data-ru="Мы извлекаем то, как продаёт ваш CEO, и превращаем это в инструмент, которым каждый день пользуется вся команда. Новые продавцы переходят от 3 месяцев адаптации к закрытию сделок на 3-й день.">We extract how your CEO sells and turn it into a tool your whole team uses every day. New reps go from 3 months of ramp to closing deals on day 3.</p>
     <div class="hero-actions fu d5">
-      <a href="#contact" class="btn-primary" data-en="Book the extraction session" data-ru="Записаться на сессию">Book the extraction session</a>
+      <a href="#contact" class="btn-primary glow-btn" data-en="Book the extraction session" data-ru="Записаться на сессию">Book the extraction session</a>
       <a href="#process" class="btn-outline" data-en="See how it works" data-ru="Как это работает">See how it works</a>
     </div>
   </div>
@@ -444,7 +506,7 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
         <input type="email" name="email" required data-en-placeholder="Work email" data-ru-placeholder="Рабочий email" placeholder="Work email">
         <input type="text" name="company" data-en-placeholder="Company" data-ru-placeholder="Компания" placeholder="Company">
         <textarea name="message" data-en-placeholder="Tell us about your sales team (optional)" data-ru-placeholder="Расскажите о вашей команде продаж (необязательно)" placeholder="Tell us about your sales team (optional)"></textarea>
-        <button type="submit" class="btn-primary" style="font-size:14px;padding:14px 28px" data-en="Book the extraction session" data-ru="Записаться на сессию">Book the extraction session</button>
+        <button type="submit" class="btn-primary glow-btn" style="font-size:14px;padding:14px 28px" data-en="Book the extraction session" data-ru="Записаться на сессию">Book the extraction session</button>
       </form>
       <div class="form-ok" id="form-ok" data-en="Got it. We'll be in touch within 24 hours." data-ru="Получили. Свяжемся в течение 24 часов.">Got it. We'll be in touch within 24 hours.</div>
     </div>
@@ -609,6 +671,17 @@ try {
   var savedLang = localStorage.getItem('savant-lang');
   if(savedLang === 'ru') setLang('ru');
 } catch(e){}
+
+// ========== GOLD BUTTON CURSOR GLOW ==========
+document.querySelectorAll('.glow-btn').forEach(function(btn){
+  btn.addEventListener('mousemove', function(e){
+    var rect = btn.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+    btn.style.setProperty('--mx', x + 'px');
+    btn.style.setProperty('--my', y + 'px');
+  });
+});
 </script>
 </body>
 </html>
