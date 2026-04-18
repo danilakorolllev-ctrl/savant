@@ -85,27 +85,66 @@ section{position:relative;z-index:1}
 .proof-text strong{color:var(--cream);font-weight:500}
 .proof-attr{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--cream-35)}
 
-/* BENTO */
+/* TOOLKIT CAROUSEL */
 .bento-section{padding:100px 0}
 .section-header{margin-bottom:52px}
 .section-label{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:14px}
 .section-title{font-family:var(--serif);font-size:clamp(28px,3.5vw,46px);font-weight:400;color:var(--cream);line-height:1.15;letter-spacing:-0.01em}
-.bento-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:14px}
-.bcard{background:var(--cream-04);border:1px solid rgba(240,235,225,0.07);border-radius:14px;padding:30px;position:relative;overflow:hidden;transition:border-color 0.4s,background 0.4s;box-shadow:inset 0 1px 0 rgba(240,235,225,0.05)}
-.bcard:hover{border-color:rgba(201,168,76,0.22);background:rgba(201,168,76,0.03)}
-.bcard:hover .bcard-arrow{transform:translate(2px,-2px);color:var(--gold)}
-.bcard:hover .bcard-num{color:var(--gold);opacity:0.5}
-.bcard-wide{grid-column:span 2}
-.bcard-tall{grid-row:span 2}
-.bcard-num{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;color:var(--cream-15);position:absolute;top:22px;right:24px;transition:color 0.4s,opacity 0.4s}
-.bcard-icon{width:36px;height:36px;border:1px solid rgba(240,235,225,0.1);border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:15px;color:var(--cream-35)}
-.bcard-title{font-family:var(--serif);font-size:21px;font-weight:400;letter-spacing:-0.01em;margin-bottom:10px;color:var(--cream)}
-.bcard-desc{font-size:13px;color:var(--cream-35);line-height:1.65;font-weight:300}
-.bcard-desc+.bcard-desc{margin-top:12px}
-.bcard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px}
-.bcard-tag{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-35);background:var(--cream-04);border:1px solid rgba(240,235,225,0.07);padding:3px 9px;border-radius:3px}
-.bcard-arrow{position:absolute;bottom:24px;right:24px;font-size:15px;color:var(--cream-15);transition:transform 0.35s,color 0.35s}
-.badge-soon{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(201,168,76,0.6);background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.18);padding:2px 7px;border-radius:3px;margin-left:8px;vertical-align:middle}
+.tool-carousel{position:relative}
+.carousel-stage{position:relative;width:100%;height:420px;overflow:hidden}
+.carousel-track{
+  display:flex;align-items:center;justify-content:center;
+  height:100%;gap:20px;
+  transition:none;
+}
+.bcard{
+  flex-shrink:0;
+  width:340px;height:380px;
+  background:var(--cream-04);border:1px solid rgba(240,235,225,0.08);
+  border-radius:16px;padding:30px;position:relative;overflow:hidden;
+  box-shadow:inset 0 1px 0 rgba(240,235,225,0.05);
+  cursor:pointer;
+  transition:opacity 0.5s ease, transform 0.7s cubic-bezier(0.4,0,0.2,1), border-color 0.5s ease, box-shadow 0.5s ease;
+}
+.bcard.prev,.bcard.next{
+  opacity:0.22;
+  transform:scale(0.88) translateY(16px);
+}
+.bcard.active{
+  opacity:1;
+  transform:scale(1) translateY(0);
+  border-color:rgba(201,168,76,0.35);
+  box-shadow:inset 0 1px 0 rgba(240,235,225,0.08), 0 24px 60px rgba(0,0,0,0.5), 0 0 40px rgba(201,168,76,0.07);
+}
+.bcard.active::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.5),transparent)}
+.bcard.active .bcard-icon{border-color:rgba(201,168,76,0.35);color:var(--gold)}
+.bcard.active .bcard-num{color:var(--gold);opacity:0.6}
+.bcard.active .bcard-arrow{color:var(--gold)}
+.bcard.hidden{opacity:0;pointer-events:none;position:absolute}
+.bcard-num{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;color:var(--cream-15);position:absolute;top:20px;right:22px}
+.bcard-icon{width:36px;height:36px;border:1px solid rgba(240,235,225,0.1);border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:15px;color:var(--cream-35);transition:border-color 0.5s,color 0.5s}
+.bcard-title{font-family:var(--serif);font-size:20px;font-weight:400;letter-spacing:-0.01em;margin-bottom:8px;color:var(--cream);line-height:1.2}
+.bcard-desc{font-size:12px;color:var(--cream-35);line-height:1.65;font-weight:300}
+.bcard-desc+.bcard-desc{margin-top:10px}
+.bcard-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:18px}
+.bcard-tag{font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-35);background:var(--cream-04);border:1px solid rgba(240,235,225,0.07);padding:3px 8px;border-radius:3px}
+.bcard-arrow{position:absolute;bottom:20px;right:22px;font-size:14px;color:var(--cream-15);transition:color 0.5s}
+.badge-soon{display:inline-block;font-family:var(--mono);font-size:7px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(201,168,76,0.6);background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.18);padding:2px 6px;border-radius:3px;margin-left:6px;vertical-align:middle}
+.carousel-arrows{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;pointer-events:none;z-index:10;padding:0 4px}
+.carousel-arrow{width:44px;height:44px;border-radius:50%;background:rgba(12,11,9,0.8);border:1px solid rgba(240,235,225,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:all;color:var(--cream-60);font-size:18px;transition:border-color 0.25s,color 0.25s;backdrop-filter:blur(8px);line-height:1}
+.carousel-arrow:hover{border-color:rgba(201,168,76,0.4);color:var(--gold)}
+.tool-indicators{display:flex;align-items:center;gap:16px;margin-top:32px}
+.tool-dot{display:flex;flex-direction:column;gap:8px;cursor:pointer;flex:1;max-width:160px}
+.tool-dot-label{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream-15);transition:color 0.4s}
+.tool-dot.active .tool-dot-label{color:var(--gold)}
+.tool-dot-track{height:2px;background:rgba(240,235,225,0.08);border-radius:2px;overflow:hidden}
+.tool-dot-fill{height:100%;width:0%;background:var(--gold);border-radius:2px;transition:width linear}
+.tool-dot.active .tool-dot-fill{width:100%}
+@media(max-width:768px){
+  .carousel-stage{height:360px}
+  .bcard{width:260px;height:340px;padding:22px}
+  .bcard.prev,.bcard.next{transform:scale(0.82) translateY(20px)}
+}
 
 /* PROBLEM */
 .problem{padding:100px 0}
@@ -171,8 +210,8 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
   .nav-links,.nav-cta{display:none}
   .nav-toggle{display:flex}
   .proof-inner{grid-template-columns:1fr;gap:16px;padding:36px 28px}
-  .bento-grid{grid-template-columns:1fr}
-  .bcard-wide,.bcard-tall{grid-column:1;grid-row:auto}
+  .tool-cards{grid-template-columns:1fr}
+  .bcard{transform:none !important}
   .stats-row{grid-template-columns:1fr;gap:2px}
   .stat-cell:first-child{border-radius:14px 14px 0 0}
   .stat-cell:last-child{border-radius:0 0 14px 14px}
@@ -248,43 +287,71 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
       <p class="section-label">The toolkit</p>
       <h2 class="section-title">Three tools. One team<br>that sells like you.</h2>
     </div>
-    <div class="bento-grid">
-      <div class="bcard bcard-wide reveal">
-        <span class="bcard-num">01</span>
-        <div class="bcard-icon">◈</div>
-        <h3 class="bcard-title">Company Pedia</h3>
-        <p class="bcard-desc">Full product knowledge, trained on everything the CEO knows. Ask anything. Get the answer you'd want your reps to give.</p>
-        <div class="bcard-tags">
-          <span class="bcard-tag">knowledge base</span>
-          <span class="bcard-tag">instant recall</span>
-          <span class="bcard-tag">always current</span>
+    <div class="tool-carousel reveal">
+      <div class="carousel-stage">
+        <div class="carousel-track" id="carousel-track">
+
+          <div class="bcard prev" data-index="0" onclick="goToTool(0)">
+            <span class="bcard-num">01</span>
+            <div class="bcard-icon">◈</div>
+            <h3 class="bcard-title">Company Pedia</h3>
+            <p class="bcard-desc">Full product knowledge, trained on everything the CEO knows. Ask anything. Get the answer you'd want your reps to give.</p>
+            <div class="bcard-tags">
+              <span class="bcard-tag">knowledge base</span>
+              <span class="bcard-tag">instant recall</span>
+              <span class="bcard-tag">always current</span>
+            </div>
+            <span class="bcard-arrow">↗</span>
+          </div>
+
+          <div class="bcard active" data-index="1" onclick="goToTool(1)">
+            <span class="bcard-num">02</span>
+            <div class="bcard-icon">⊕</div>
+            <h3 class="bcard-title">Objection Handler</h3>
+            <p class="bcard-desc">Select the objection. Select the client type. Get the word-for-word response that actually works, the one the CEO would give.</p>
+            <p class="bcard-desc">No improvising. No losing the sale because a rep didn't know what to say.</p>
+            <div class="bcard-tags">
+              <span class="bcard-tag">objection library</span>
+              <span class="bcard-tag">client profiles</span>
+              <span class="bcard-tag">word-for-word</span>
+            </div>
+            <span class="bcard-arrow">↗</span>
+          </div>
+
+          <div class="bcard next" data-index="2" onclick="goToTool(2)">
+            <span class="bcard-num">03</span>
+            <div class="bcard-icon">⊶</div>
+            <h3 class="bcard-title">Lead Conversations <span class="badge-soon">soon</span></h3>
+            <p class="bcard-desc">Paste a lead message. Get a ready-to-send reply with full context and memory. No more starting from scratch on every thread.</p>
+            <div class="bcard-tags">
+              <span class="bcard-tag">message drafting</span>
+              <span class="bcard-tag">full memory</span>
+              <span class="bcard-tag">your voice</span>
+            </div>
+            <span class="bcard-arrow">↗</span>
+          </div>
+
         </div>
-        <span class="bcard-arrow">↗</span>
+
+        <div class="carousel-arrows">
+          <button class="carousel-arrow" onclick="goToTool((currentTool+2)%3)" aria-label="Previous">&#8592;</button>
+          <button class="carousel-arrow" onclick="goToTool((currentTool+1)%3)" aria-label="Next">&#8594;</button>
+        </div>
       </div>
-      <div class="bcard bcard-tall reveal">
-        <span class="bcard-num">02</span>
-        <div class="bcard-icon">⊕</div>
-        <h3 class="bcard-title">Objection Handler</h3>
-        <p class="bcard-desc">Select the objection. Select the client type. Get the word-for-word response that actually works, the one the CEO would give.</p>
-        <p class="bcard-desc">No improvising. No losing the sale because a rep didn't know what to say.</p>
-        <div class="bcard-tags">
-          <span class="bcard-tag">objection library</span>
-          <span class="bcard-tag">client profiles</span>
-          <span class="bcard-tag">word-for-word</span>
+
+      <div class="tool-indicators">
+        <div class="tool-dot" onclick="goToTool(0)">
+          <span class="tool-dot-label">Company Pedia</span>
+          <div class="tool-dot-track"><div class="tool-dot-fill" id="fill-0"></div></div>
         </div>
-        <span class="bcard-arrow">↗</span>
-      </div>
-      <div class="bcard bcard-wide reveal">
-        <span class="bcard-num">03</span>
-        <div class="bcard-icon">⊶</div>
-        <h3 class="bcard-title">Lead Conversations <span class="badge-soon">soon</span></h3>
-        <p class="bcard-desc">Paste a lead message. Get a ready-to-send reply with full context and memory. No more starting from scratch on every thread.</p>
-        <div class="bcard-tags">
-          <span class="bcard-tag">message drafting</span>
-          <span class="bcard-tag">full memory</span>
-          <span class="bcard-tag">your voice</span>
+        <div class="tool-dot" onclick="goToTool(1)">
+          <span class="tool-dot-label">Objection Handler</span>
+          <div class="tool-dot-track"><div class="tool-dot-fill" id="fill-1"></div></div>
         </div>
-        <span class="bcard-arrow">↗</span>
+        <div class="tool-dot" onclick="goToTool(2)">
+          <span class="tool-dot-label">Lead Conversations</span>
+          <div class="tool-dot-track"><div class="tool-dot-fill" id="fill-2"></div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -395,7 +462,7 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
     <h2 class="cta-headline reveal">Stop re-explaining your product. Start scaling it.</h2>
     <p class="cta-sub reveal">The knowledge extraction session takes 2 hours. Whatever happens next, you leave with a fully documented version of your sales knowledge.</p>
     <div class="reveal">
-      <form class="contact-form" action="https://formspree.io/f/xjgjrbwe" method="POST" onsubmit="handleSubmit(event)">
+      <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleSubmit(event)">
         <input type="text" name="name" placeholder="Your name" required>
         <input type="email" name="email" placeholder="Work email" required>
         <input type="text" name="company" placeholder="Company">
@@ -488,6 +555,52 @@ function handleSubmit(e) {
 document.querySelectorAll('.bcard').forEach((c, i) => { c.style.transitionDelay = (i * 70) + 'ms'; });
 
 if (window.location.hash) { history.replaceState(null, '', window.location.pathname); window.scrollTo(0, 0); }
+
+// Toolkit carousel
+const DURATION = 7000;
+const TOTAL = 3;
+let currentTool = 1; // start on middle card
+let carouselTimer = null;
+
+function goToTool(index) {
+  clearTimeout(carouselTimer);
+
+  // Reset fills
+  for (let i = 0; i < TOTAL; i++) {
+    const f = document.getElementById('fill-' + i);
+    if (f) { f.style.transition = 'none'; f.style.width = '0%'; }
+  }
+
+  currentTool = index;
+  const prev = (index + TOTAL - 1) % TOTAL;
+  const next = (index + 1) % TOTAL;
+
+  document.querySelectorAll('.bcard').forEach((c, i) => {
+    c.classList.remove('active', 'prev', 'next');
+    if (i === index) c.classList.add('active');
+    else if (i === prev) c.classList.add('prev');
+    else c.classList.add('next');
+  });
+
+  document.querySelectorAll('.tool-dot').forEach((d, i) => d.classList.toggle('active', i === index));
+
+  // Animate fill
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const fill = document.getElementById('fill-' + index);
+    if (fill) { fill.style.transition = `width ${DURATION}ms linear`; fill.style.width = '100%'; }
+  }));
+
+  carouselTimer = setTimeout(() => goToTool((currentTool + 1) % TOTAL), DURATION);
+}
+
+// Start when toolkit enters viewport
+const toolSection = document.getElementById('toolkit');
+if (toolSection) {
+  const toolObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { goToTool(0); toolObs.disconnect(); }
+  }, { threshold: 0.2 });
+  toolObs.observe(toolSection);
+}
 </script>
 </body>
 </html>
