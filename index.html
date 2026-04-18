@@ -3,946 +3,491 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sales AI — Your best rep. On every call.</title>
+<title>Savant, Your best rep. On every call.</title>
+<meta name="description" content="Savant extracts how your CEO sells and turns it into an AI tool your whole team uses every day. New reps close deals on day 3.">
+<meta property="og:title" content="Savant, Your best rep. On every call.">
+<meta property="og:description" content="We extract how your CEO sells and turn it into a tool your whole team uses every day.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://savant-seven.vercel.app">
+<meta property="og:site_name" content="Savant">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Savant, Your best rep. On every call.">
+<meta name="twitter:description" content="We extract how your CEO sells and turn it into a tool your whole team uses every day.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0C0B09;
+  --gold:#C9A84C;
+  --gold-dim:rgba(201,168,76,0.15);
+  --gold-faint:rgba(201,168,76,0.06);
+  --cream:#F0EBE1;
+  --cream-60:rgba(240,235,225,0.6);
+  --cream-35:rgba(240,235,225,0.35);
+  --cream-15:rgba(240,235,225,0.15);
+  --cream-08:rgba(240,235,225,0.08);
+  --cream-04:rgba(240,235,225,0.04);
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.018) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;z-index:0}
+.glow-hero{position:fixed;top:-300px;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(201,168,76,0.05) 0%,transparent 65%);filter:blur(40px);pointer-events:none;z-index:0}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.fu{opacity:0;animation:fadeUp 0.7s cubic-bezier(0.4,0,0.2,1) forwards}
+.d1{animation-delay:0.05s}.d2{animation-delay:0.15s}.d3{animation-delay:0.25s}.d4{animation-delay:0.35s}.d5{animation-delay:0.5s}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.container{max-width:1100px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
 
-  :root {
-    --bg: #080A0F;
-    --cyan: #00D9FF;
-    --blue: #0099FF;
-    --white-100: rgba(255,255,255,1);
-    --white-40: rgba(255,255,255,0.4);
-    --white-25: rgba(255,255,255,0.25);
-    --white-15: rgba(255,255,255,0.15);
-    --white-06: rgba(255,255,255,0.06);
-    --white-03: rgba(255,255,255,0.03);
-    --emerald: #34d399;
-    --font-display: 'DM Sans', system-ui, sans-serif;
-    --font-mono: 'DM Mono', monospace;
-  }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(12,11,9,0.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(240,235,225,0.06)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{font-family:var(--serif);font-size:20px;color:var(--cream);text-decoration:none;letter-spacing:0.01em;font-style:italic}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{font-size:12px;letter-spacing:0.1em;text-transform:lowercase;color:var(--cream-35);text-decoration:none;padding:6px 14px;border-radius:5px;transition:color 0.25s,background 0.25s}
+.nav-links a:hover{color:var(--cream);background:var(--cream-04)}
+.nav-cta{font-size:12px;letter-spacing:0.08em;font-family:var(--sans);font-weight:500;color:#0C0B09;background:var(--gold);padding:7px 18px;border-radius:6px;text-decoration:none;border:none;cursor:pointer;transition:opacity 0.2s}
+.nav-cta:hover{opacity:0.85}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.nav-toggle span{display:block;width:22px;height:1.5px;background:var(--cream-60);transition:all 0.3s}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(12,11,9,0.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(240,235,225,0.06);padding:20px 28px 28px;z-index:99;flex-direction:column;gap:4px}
+.mobile-menu a{font-size:15px;color:var(--cream-60);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(240,235,225,0.05);display:block;letter-spacing:0.05em;transition:color 0.2s}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu.open{display:flex}
 
-  html { scroll-behavior: smooth; }
+/* HERO */
+.hero{padding:160px 0 120px;text-align:center}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:32px;opacity:0.8}
+.hero-headline{font-family:var(--serif);font-size:clamp(48px,6.5vw,90px);font-weight:400;line-height:1.0;letter-spacing:-0.01em;margin-bottom:12px;color:var(--cream)}
+.hero-headline em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:clamp(15px,1.8vw,18px);color:var(--cream-60);max-width:520px;margin:0 auto 48px;line-height:1.7;font-weight:300}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:#0C0B09;font-family:var(--sans);font-size:14px;font-weight:600;padding:13px 28px;border-radius:7px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity 0.2s,transform 0.2s;letter-spacing:-0.01em}
+.btn-primary:hover{opacity:0.88;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--cream-60);font-family:var(--sans);font-size:14px;font-weight:400;padding:12px 28px;border-radius:7px;border:1px solid var(--cream-15);cursor:pointer;text-decoration:none;display:inline-block;transition:border-color 0.25s,color 0.25s}
+.btn-outline:hover{border-color:rgba(240,235,225,0.35);color:var(--cream)}
 
-  body {
-    background: var(--bg);
-    color: var(--white-100);
-    font-family: var(--font-display);
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+section{position:relative;z-index:1}
+.divider{border:none;border-top:1px solid rgba(240,235,225,0.05);margin:0}
 
-  /* Grid overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,217,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,217,255,0.025) 1px, transparent 1px);
-    background-size: 80px 80px;
-    pointer-events: none;
-    z-index: 0;
-  }
+/* PROOF */
+.proof{padding:80px 0 100px}
+.proof-inner{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:start;padding:56px 64px;background:var(--cream-04);border:1px solid rgba(240,235,225,0.07);border-radius:18px;position:relative;overflow:hidden}
+.proof-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.4),transparent)}
+.proof-num{font-family:var(--serif);font-size:clamp(80px,10vw,130px);font-style:italic;color:var(--gold);line-height:1;letter-spacing:-0.02em}
+.proof-body{padding-top:12px}
+.proof-text{font-size:19px;color:var(--cream-60);line-height:1.65;font-weight:300;margin-bottom:20px;max-width:500px}
+.proof-text strong{color:var(--cream);font-weight:500}
+.proof-attr{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--cream-35)}
 
-  /* Radial glows */
-  .glow-tl {
-    position: fixed;
-    top: -200px;
-    left: -200px;
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(circle, rgba(0,217,255,0.07) 0%, transparent 70%);
-    filter: blur(60px);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .glow-br {
-    position: fixed;
-    bottom: -200px;
-    right: -200px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0,153,255,0.05) 0%, transparent 70%);
-    filter: blur(80px);
-    pointer-events: none;
-    z-index: 0;
-  }
+/* BENTO */
+.bento-section{padding:100px 0}
+.section-header{margin-bottom:52px}
+.section-label{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:14px}
+.section-title{font-family:var(--serif);font-size:clamp(28px,3.5vw,46px);font-weight:400;color:var(--cream);line-height:1.15;letter-spacing:-0.01em}
+.bento-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:14px}
+.bcard{background:var(--cream-04);border:1px solid rgba(240,235,225,0.07);border-radius:14px;padding:30px;position:relative;overflow:hidden;transition:border-color 0.4s,background 0.4s;box-shadow:inset 0 1px 0 rgba(240,235,225,0.05)}
+.bcard:hover{border-color:rgba(201,168,76,0.22);background:rgba(201,168,76,0.03)}
+.bcard:hover .bcard-arrow{transform:translate(2px,-2px);color:var(--gold)}
+.bcard:hover .bcard-num{color:var(--gold);opacity:0.5}
+.bcard-wide{grid-column:span 2}
+.bcard-tall{grid-row:span 2}
+.bcard-num{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;color:var(--cream-15);position:absolute;top:22px;right:24px;transition:color 0.4s,opacity 0.4s}
+.bcard-icon{width:36px;height:36px;border:1px solid rgba(240,235,225,0.1);border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:15px;color:var(--cream-35)}
+.bcard-title{font-family:var(--serif);font-size:21px;font-weight:400;letter-spacing:-0.01em;margin-bottom:10px;color:var(--cream)}
+.bcard-desc{font-size:13px;color:var(--cream-35);line-height:1.65;font-weight:300}
+.bcard-desc+.bcard-desc{margin-top:12px}
+.bcard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px}
+.bcard-tag{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-35);background:var(--cream-04);border:1px solid rgba(240,235,225,0.07);padding:3px 9px;border-radius:3px}
+.bcard-arrow{position:absolute;bottom:24px;right:24px;font-size:15px;color:var(--cream-15);transition:transform 0.35s,color 0.35s}
+.badge-soon{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(201,168,76,0.6);background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.18);padding:2px 7px;border-radius:3px;margin-left:8px;vertical-align:middle}
 
-  /* Fade-up animation */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .fade-up {
-    opacity: 0;
-    animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-  .d1 { animation-delay: 0.1s; }
-  .d2 { animation-delay: 0.2s; }
-  .d3 { animation-delay: 0.3s; }
-  .d4 { animation-delay: 0.4s; }
-  .d5 { animation-delay: 0.5s; }
-  .d6 { animation-delay: 0.6s; }
-  .d7 { animation-delay: 0.7s; }
-  .d8 { animation-delay: 0.8s; }
+/* PROBLEM */
+.problem{padding:100px 0}
+.problem-headline{font-family:var(--serif);font-size:clamp(26px,3.2vw,42px);font-weight:400;line-height:1.2;max-width:620px;margin-bottom:64px;color:var(--cream);letter-spacing:-0.01em}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.stat-cell{padding:44px 36px;background:var(--cream-04);border:1px solid rgba(240,235,225,0.06)}
+.stat-cell:first-child{border-radius:14px 0 0 14px}
+.stat-cell:last-child{border-radius:0 14px 14px 0}
+.stat-num{font-family:var(--serif);font-size:clamp(40px,4.5vw,58px);font-weight:400;color:var(--cream);line-height:1;margin-bottom:10px;letter-spacing:-0.02em}
+.stat-lbl{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);opacity:0.7;line-height:1.5}
 
-  /* Scroll reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
+/* HOW */
+.how{padding:100px 0}
+.steps{margin-top:0}
+.step{display:grid;grid-template-columns:52px 1fr;gap:28px;padding:44px 0;border-bottom:1px solid rgba(240,235,225,0.05)}
+.step:last-child{border-bottom:none}
+.step-n{font-family:var(--mono);font-size:11px;color:var(--cream-15);letter-spacing:0.1em;padding-top:5px}
+.step-title{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--cream);margin-bottom:10px;letter-spacing:-0.01em}
+.step-body{font-size:15px;color:var(--cream-60);line-height:1.75;font-weight:300;max-width:540px}
 
-  /* Layout */
-  .container {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 32px;
-    position: relative;
-    z-index: 1;
-  }
+/* FAQ */
+.faq{padding:100px 0}
+.faq-list{margin-top:52px}
+.faq-item{border-bottom:1px solid rgba(240,235,225,0.06)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:22px 0;background:none;border:none;color:var(--cream);font-family:var(--sans);font-size:15px;font-weight:400;cursor:pointer;text-align:left;gap:16px;transition:color 0.25s}
+.faq-q:hover{color:var(--gold)}
+.faq-ico{width:20px;height:20px;flex-shrink:0;border:1px solid rgba(240,235,225,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--cream-35);transition:all 0.3s}
+.faq-item.open .faq-ico{border-color:rgba(201,168,76,0.4);color:var(--gold);transform:rotate(45deg)}
+.faq-a{overflow:hidden;max-height:0;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1)}
+.faq-a-inner{padding:0 0 24px;font-size:14px;color:var(--cream-60);line-height:1.75;font-weight:300;max-width:660px}
 
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    padding: 20px 0;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    background: rgba(8,10,15,0.7);
-  }
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
-  .logo-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 10px rgba(0,217,255,0.6);
-  }
-  .logo-text {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: var(--white-100);
-  }
-  .nav-btn {
-    font-size: 12px;
-    font-family: var(--font-display);
-    letter-spacing: 0.15em;
-    text-transform: lowercase;
-    color: var(--white-40);
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 8px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .nav-btn:hover {
-    border-color: rgba(0,217,255,0.5);
-    color: var(--cyan);
-  }
+/* CTA */
+.cta-section{padding:120px 0;text-align:center}
+.cta-headline{font-family:var(--serif);font-size:clamp(34px,4.5vw,60px);font-weight:400;line-height:1.1;max-width:620px;margin:0 auto 16px;letter-spacing:-0.01em;color:var(--cream)}
+.cta-sub{font-size:15px;color:var(--cream-60);max-width:420px;margin:0 auto 44px;line-height:1.7;font-weight:300}
+.contact-form{display:flex;flex-direction:column;gap:10px;max-width:400px;margin:0 auto}
+.contact-form input,.contact-form textarea{background:var(--cream-04);border:1px solid rgba(240,235,225,0.1);border-radius:7px;padding:12px 15px;color:var(--cream);font-size:14px;font-family:var(--sans);font-weight:300;outline:none;width:100%;transition:border-color 0.25s}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--cream-35)}
+.contact-form input:focus,.contact-form textarea:focus{border-color:rgba(201,168,76,0.45)}
+.contact-form textarea{resize:vertical;min-height:90px}
+.form-ok{display:none;padding:14px 22px;background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);border-radius:7px;color:var(--gold);font-size:13px;letter-spacing:0.03em;text-align:center}
 
-  /* HERO */
-  .hero {
-    padding: 200px 0 140px;
-    text-align: left;
-  }
-  .status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 100px;
-    padding: 6px 14px;
-    margin-bottom: 36px;
-  }
-  .status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--emerald);
-    box-shadow: 0 0 6px rgba(52,211,153,0.8);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
-  .status-text {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--white-40);
-  }
-  .hero-headline {
-    font-size: clamp(44px, 5.5vw, 76px);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.0;
-    margin-bottom: 28px;
-  }
-  .hero-line1 { display: block; color: var(--white-100); }
-  .hero-line2 {
-    display: block;
-    background: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero-sub {
-    font-size: 17px;
-    color: var(--white-40);
-    max-width: 480px;
-    line-height: 1.65;
-    margin-bottom: 44px;
-    font-weight: 300;
-  }
-  .hero-actions {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-  .btn-primary {
-    background: var(--cyan);
-    color: #080A0F;
-    font-family: var(--font-display);
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    padding: 13px 28px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .btn-primary:hover {
-    background: #20e5ff;
-    transform: translateY(-1px);
-  }
-  .btn-ghost {
-    background: transparent;
-    color: var(--white-40);
-    font-family: var(--font-display);
-    font-size: 14px;
-    font-weight: 400;
-    padding: 12px 28px;
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.1);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .btn-ghost:hover {
-    border-color: rgba(255,255,255,0.25);
-    color: var(--white-100);
-  }
+/* FOOTER */
+footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:relative;z-index:1}
+.footer-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:40px;gap:40px;flex-wrap:wrap}
+.footer-name{font-family:var(--serif);font-size:22px;font-style:italic;color:var(--cream);margin-bottom:6px}
+.footer-tagline{font-size:12px;color:var(--cream-35);font-weight:300}
+.footer-socials-label{font-family:var(--mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream-35);margin-bottom:12px}
+.footer-socials{display:flex;flex-direction:column;gap:10px}
+.social-link{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--cream-60);font-size:13px;font-weight:300;transition:color 0.25s;padding:4px 0}
+.social-link:hover{color:var(--cream)}
+.social-link:hover .sicon{border-color:rgba(201,168,76,0.4);color:var(--gold)}
+.sicon{width:34px;height:34px;border-radius:7px;border:1px solid rgba(240,235,225,0.1);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--cream-35);transition:border-color 0.25s,color 0.25s;flex-shrink:0}
+.footer-bottom{border-top:1px solid rgba(240,235,225,0.05);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-family:var(--mono);font-size:10px;color:var(--cream-15);letter-spacing:0.08em}
+.footer-nav{display:flex;gap:20px}
+.footer-nav a{font-size:11px;color:var(--cream-35);text-decoration:none;transition:color 0.2s}
+.footer-nav a:hover{color:var(--cream)}
 
-  /* SECTION BASE */
-  section { position: relative; z-index: 1; }
-
-  /* PROOF */
-  .proof {
-    padding: 100px 0;
-    border-top: 1px solid rgba(255,255,255,0.05);
-  }
-  .proof-block {
-    display: flex;
-    align-items: flex-start;
-    gap: 64px;
-    padding: 64px;
-    background: var(--white-03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
-    position: relative;
-    overflow: hidden;
-  }
-  .proof-block::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0,217,255,0.3), transparent);
-  }
-  .proof-number {
-    font-size: 120px;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1;
-    color: var(--cyan);
-    flex-shrink: 0;
-    font-family: var(--font-display);
-  }
-  .proof-right { flex: 1; padding-top: 16px; }
-  .proof-text {
-    font-size: 20px;
-    color: var(--white-40);
-    line-height: 1.6;
-    font-weight: 300;
-    margin-bottom: 24px;
-    max-width: 520px;
-  }
-  .proof-text strong { color: var(--white-100); font-weight: 500; }
-  .proof-attr {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--white-25);
-  }
-
-  /* BENTO */
-  .bento-section { padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.05); }
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--white-25);
-    margin-bottom: 20px;
-  }
-  .section-title {
-    font-size: clamp(28px, 3vw, 42px);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin-bottom: 56px;
-    line-height: 1.1;
-  }
-  .bento-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 16px;
-  }
-  .bento-card {
-    background: var(--white-03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px;
-    padding: 32px;
-    position: relative;
-    overflow: hidden;
-    cursor: default;
-    transition: border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
-  }
-  .bento-card:hover {
-    border-color: rgba(0,217,255,0.2);
-    background: rgba(0,217,255,0.02);
-  }
-  .bento-card:hover .card-icon-wrap { border-color: rgba(0,217,255,0.3); }
-  .bento-card:hover .card-icon { color: var(--cyan); }
-  .bento-card:hover .card-arrow { transform: translate(2px, -2px); color: var(--cyan); }
-  .card-wide { grid-column: span 2; }
-  .card-tall { grid-row: span 2; grid-column: 3; }
-  .card-num {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--white-15);
-    position: absolute;
-    top: 24px;
-    right: 28px;
-    letter-spacing: 0.1em;
-  }
-  .card-icon-wrap {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 8px;
-    margin-bottom: 20px;
-    transition: border-color 0.4s ease;
-  }
-  .card-icon {
-    font-size: 16px;
-    color: var(--white-25);
-    transition: color 0.4s ease;
-  }
-  .card-title {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 10px;
-    color: var(--white-100);
-  }
-  .card-desc {
-    font-size: 14px;
-    color: var(--white-25);
-    line-height: 1.6;
-    font-weight: 300;
-  }
-  .card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 24px;
-  }
-  .card-tag {
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--white-25);
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.07);
-    padding: 4px 10px;
-    border-radius: 4px;
-  }
-  .card-arrow {
-    position: absolute;
-    bottom: 28px;
-    right: 28px;
-    font-size: 16px;
-    color: var(--white-15);
-    transition: transform 0.4s ease, color 0.4s ease;
-  }
-  .badge-soon {
-    display: inline-block;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(0,217,255,0.6);
-    background: rgba(0,217,255,0.06);
-    border: 1px solid rgba(0,217,255,0.15);
-    padding: 3px 8px;
-    border-radius: 4px;
-    margin-left: 10px;
-    vertical-align: middle;
-  }
-  .card-tall .card-desc { margin-bottom: 16px; }
-
-  /* PROBLEM */
-  .problem { padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.05); }
-  .problem-headline {
-    font-size: clamp(24px, 2.8vw, 38px);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    max-width: 640px;
-    margin-bottom: 72px;
-    line-height: 1.2;
-  }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-  .stat-block {
-    padding: 48px 40px;
-    background: var(--white-03);
-    border: 1px solid rgba(255,255,255,0.05);
-  }
-  .stat-block:first-child { border-radius: 16px 0 0 16px; }
-  .stat-block:last-child { border-radius: 0 16px 16px 0; }
-  .stat-num {
-    font-size: 52px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin-bottom: 8px;
-    color: var(--white-100);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 12px;
-    color: var(--cyan);
-    letter-spacing: 0.05em;
-    font-weight: 400;
-  }
-
-  /* HOW IT WORKS */
-  .how { padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.05); }
-  .steps { display: flex; flex-direction: column; gap: 0; }
-  .step {
-    display: grid;
-    grid-template-columns: 60px 1fr;
-    gap: 32px;
-    padding: 48px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-  .step:last-child { border-bottom: none; }
-  .step-num {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--white-15);
-    padding-top: 4px;
-    letter-spacing: 0.1em;
-  }
-  .step-content {}
-  .step-title {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
-    color: var(--white-100);
-  }
-  .step-body {
-    font-size: 15px;
-    color: var(--white-40);
-    max-width: 560px;
-    line-height: 1.7;
-    font-weight: 300;
-  }
-
-  /* FAQ */
-  .faq { padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.05); }
-  .faq-list { margin-top: 56px; }
-  .faq-item {
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-  .faq-q {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 0;
-    background: none;
-    border: none;
-    color: var(--white-100);
-    font-family: var(--font-display);
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    cursor: pointer;
-    text-align: left;
-    gap: 16px;
-    transition: color 0.3s ease;
-  }
-  .faq-q:hover { color: var(--cyan); }
-  .faq-icon {
-    width: 22px;
-    height: 22px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 50%;
-    font-size: 14px;
-    color: var(--white-25);
-    transition: all 0.3s ease;
-  }
-  .faq-item.open .faq-icon {
-    border-color: rgba(0,217,255,0.3);
-    color: var(--cyan);
-    transform: rotate(45deg);
-  }
-  .faq-a {
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .faq-a-inner {
-    padding: 0 0 28px;
-    font-size: 15px;
-    color: var(--white-40);
-    line-height: 1.7;
-    font-weight: 300;
-    max-width: 680px;
-  }
-
-  /* FINAL CTA */
-  .final-cta {
-    padding: 120px 0;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    text-align: center;
-  }
-  .cta-label {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--white-25);
-    margin-bottom: 24px;
-  }
-  .cta-headline {
-    font-size: clamp(32px, 4vw, 56px);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin-bottom: 20px;
-    line-height: 1.1;
-    max-width: 640px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .cta-sub {
-    font-size: 16px;
-    color: var(--white-40);
-    max-width: 440px;
-    margin: 0 auto 40px;
-    line-height: 1.65;
-    font-weight: 300;
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid rgba(255,255,255,0.05);
-    padding: 32px 0;
-    position: relative;
-    z-index: 1;
-  }
-  .footer-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .footer-links {
-    display: flex;
-    gap: 24px;
-  }
-  .footer-links a {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: lowercase;
-    color: var(--white-25);
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-  .footer-links a:hover { color: var(--white-100); }
-  .footer-copy {
-    font-size: 11px;
-    color: var(--white-15);
-    letter-spacing: 0.05em;
-  }
-
-  @media (max-width: 768px) {
-    .hero { padding: 140px 0 80px; }
-    .proof-block { flex-direction: column; gap: 24px; padding: 40px 32px; }
-    .proof-number { font-size: 72px; }
-    .bento-grid { grid-template-columns: 1fr; }
-    .card-wide, .card-tall { grid-column: 1; grid-row: auto; }
-    .stats-grid { grid-template-columns: 1fr; gap: 2px; }
-    .stat-block:first-child { border-radius: 16px 16px 0 0; }
-    .stat-block:last-child { border-radius: 0 0 16px 16px; }
-    .step { grid-template-columns: 40px 1fr; gap: 16px; }
-    .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
-  }
+/* MOBILE */
+@media(max-width:768px){
+  .hero{padding:120px 0 80px}
+  .nav-links,.nav-cta{display:none}
+  .nav-toggle{display:flex}
+  .proof-inner{grid-template-columns:1fr;gap:16px;padding:36px 28px}
+  .bento-grid{grid-template-columns:1fr}
+  .bcard-wide,.bcard-tall{grid-column:1;grid-row:auto}
+  .stats-row{grid-template-columns:1fr;gap:2px}
+  .stat-cell:first-child{border-radius:14px 14px 0 0}
+  .stat-cell:last-child{border-radius:0 0 14px 14px}
+  .step{grid-template-columns:36px 1fr;gap:16px;padding:32px 0}
+  .footer-top{flex-direction:column;gap:32px}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:16px}
+}
 </style>
 </head>
 <body>
-
-<div class="glow-tl"></div>
-<div class="glow-br"></div>
+<div class="glow-hero"></div>
 
 <!-- NAV -->
 <nav>
   <div class="container nav-inner">
-    <a href="#" class="logo">
-      <div class="logo-dot"></div>
-      <span class="logo-text">Sales AI</span>
-    </a>
-    <a href="#cta" class="nav-btn">request access</a>
+    <a href="#top" class="nav-logo">Savant</a>
+    <ul class="nav-links">
+      <li><a href="#toolkit">toolkit</a></li>
+      <li><a href="#process">process</a></li>
+      <li><a href="#faq">faq</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Book a session</a>
+    <button class="nav-toggle" onclick="toggleMenu()" id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#toolkit" onclick="closeMenu()">toolkit</a>
+  <a href="#process" onclick="closeMenu()">process</a>
+  <a href="#faq" onclick="closeMenu()">faq</a>
+  <a href="#contact" onclick="closeMenu()" style="color:var(--gold)">book a session</a>
+</div>
+
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="top">
   <div class="container">
-    <div class="status-pill fade-up d1">
-      <div class="status-dot"></div>
-      <span class="status-text">Sales Team &middot; Active</span>
-    </div>
+    <p class="hero-eyebrow fu d1">Internal sales AI</p>
     <h1 class="hero-headline">
-      <span class="hero-line1 fade-up d2">Your best rep.</span>
-      <span class="hero-line2 fade-up d3">On every call.</span>
+      <span class="fu d2">Your best rep.</span><br>
+      <em class="fu d3">On every call.</em>
     </h1>
-    <p class="hero-sub fade-up d4">We extract how your CEO sells and turn it into a tool your whole team uses every day. New reps go from 3 months of ramp to closing deals on day 3.</p>
-    <div class="hero-actions fade-up d5">
-      <a href="#cta" class="btn-primary">Request a demo</a>
-      <a href="#how" class="btn-ghost">See how it works</a>
+    <p class="hero-sub fu d4">We extract how your CEO sells and turn it into a tool your whole team uses every day. New reps go from 3 months of ramp to closing deals on day 3.</p>
+    <div class="hero-actions fu d5">
+      <a href="#contact" class="btn-primary">Book the extraction session</a>
+      <a href="#process" class="btn-outline">See how it works</a>
     </div>
   </div>
 </section>
+
+<hr class="divider">
 
 <!-- PROOF -->
 <section class="proof">
   <div class="container">
-    <div class="proof-block reveal">
-      <div class="proof-number">Day 3</div>
-      <div class="proof-right">
-        <p class="proof-text">The first rep who used this tool <strong>closed a deal on day 3</strong> of starting the job. Before the tool, ramp took 3 months — and most reps quit before they got there.</p>
-        <p class="proof-attr">— Client #0, B2B Real Estate Platform</p>
+    <div class="proof-inner reveal">
+      <div class="proof-num">Day 3</div>
+      <div class="proof-body">
+        <p class="proof-text">The first rep who used this tool <strong>closed a deal on day 3</strong> of starting the job. Before the tool, ramp took 3 months, and most reps quit before they got there.</p>
+        <p class="proof-attr">Client #0, B2B Real Estate Platform</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- THREE TOOLS -->
-<section class="bento-section">
+<hr class="divider">
+
+<!-- TOOLKIT -->
+<section class="bento-section" id="toolkit">
   <div class="container">
-    <p class="section-label reveal">The toolkit</p>
-    <h2 class="section-title reveal">Three tools. One team that sells like you.</h2>
+    <div class="section-header reveal">
+      <p class="section-label">The toolkit</p>
+      <h2 class="section-title">Three tools. One team<br>that sells like you.</h2>
+    </div>
     <div class="bento-grid">
-
-      <div class="bento-card card-wide reveal">
-        <span class="card-num">01</span>
-        <div class="card-icon-wrap">
-          <span class="card-icon">◈</span>
+      <div class="bcard bcard-wide reveal">
+        <span class="bcard-num">01</span>
+        <div class="bcard-icon">◈</div>
+        <h3 class="bcard-title">Company Pedia</h3>
+        <p class="bcard-desc">Full product knowledge, trained on everything the CEO knows. Ask anything. Get the answer you'd want your reps to give.</p>
+        <div class="bcard-tags">
+          <span class="bcard-tag">knowledge base</span>
+          <span class="bcard-tag">instant recall</span>
+          <span class="bcard-tag">always current</span>
         </div>
-        <h3 class="card-title">Company Pedia</h3>
-        <p class="card-desc">Full product knowledge, trained on everything the CEO knows. Ask anything. Get the answer you'd want your reps to give.</p>
-        <div class="card-tags">
-          <span class="card-tag">knowledge base</span>
-          <span class="card-tag">instant recall</span>
-          <span class="card-tag">always current</span>
-        </div>
-        <span class="card-arrow">↗</span>
+        <span class="bcard-arrow">↗</span>
       </div>
-
-      <div class="bento-card card-tall reveal">
-        <span class="card-num">02</span>
-        <div class="card-icon-wrap">
-          <span class="card-icon">⊕</span>
+      <div class="bcard bcard-tall reveal">
+        <span class="bcard-num">02</span>
+        <div class="bcard-icon">⊕</div>
+        <h3 class="bcard-title">Objection Handler</h3>
+        <p class="bcard-desc">Select the objection. Select the client type. Get the word-for-word response that actually works, the one the CEO would give.</p>
+        <p class="bcard-desc">No improvising. No losing the sale because a rep didn't know what to say.</p>
+        <div class="bcard-tags">
+          <span class="bcard-tag">objection library</span>
+          <span class="bcard-tag">client profiles</span>
+          <span class="bcard-tag">word-for-word</span>
         </div>
-        <h3 class="card-title">Objection Handler</h3>
-        <p class="card-desc">Select the objection. Select the client type. Get the word-for-word response that actually works — the one the CEO would give.</p>
-        <p class="card-desc" style="margin-top:16px;">No improvising. No losing the sale because a rep didn't know what to say.</p>
-        <div class="card-tags">
-          <span class="card-tag">objection library</span>
-          <span class="card-tag">client profiles</span>
-          <span class="card-tag">word-for-word</span>
-        </div>
-        <span class="card-arrow">↗</span>
+        <span class="bcard-arrow">↗</span>
       </div>
-
-      <div class="bento-card card-wide reveal">
-        <span class="card-num">03</span>
-        <div class="card-icon-wrap">
-          <span class="card-icon">⊶</span>
+      <div class="bcard bcard-wide reveal">
+        <span class="bcard-num">03</span>
+        <div class="bcard-icon">⊶</div>
+        <h3 class="bcard-title">Lead Conversations <span class="badge-soon">soon</span></h3>
+        <p class="bcard-desc">Paste a lead message. Get a ready-to-send reply with full context and memory. No more starting from scratch on every thread.</p>
+        <div class="bcard-tags">
+          <span class="bcard-tag">message drafting</span>
+          <span class="bcard-tag">full memory</span>
+          <span class="bcard-tag">your voice</span>
         </div>
-        <h3 class="card-title">Lead Conversations <span class="badge-soon">coming soon</span></h3>
-        <p class="card-desc">Paste a lead message. Get a ready-to-send reply with full context and memory. No more starting from scratch on every thread.</p>
-        <div class="card-tags">
-          <span class="card-tag">message drafting</span>
-          <span class="card-tag">full memory</span>
-          <span class="card-tag">your voice</span>
-        </div>
-        <span class="card-arrow">↗</span>
+        <span class="bcard-arrow">↗</span>
       </div>
-
     </div>
   </div>
 </section>
+
+<hr class="divider">
 
 <!-- PROBLEM -->
 <section class="problem">
   <div class="container">
     <h2 class="problem-headline reveal">Every rep is a worse version of you in a client conversation.</h2>
-    <div class="stats-grid">
-      <div class="stat-block reveal">
-        <div class="stat-num">4–6 mo</div>
-        <div class="stat-label">average ramp time for new sales hires</div>
+    <div class="stats-row">
+      <div class="stat-cell reveal">
+        <div class="stat-num">4-6 mo</div>
+        <div class="stat-lbl">average ramp time<br>for new sales hires</div>
       </div>
-      <div class="stat-block reveal">
+      <div class="stat-cell reveal">
         <div class="stat-num">€20k+</div>
-        <div class="stat-label">cost before they reach full productivity</div>
+        <div class="stat-lbl">cost before they reach<br>full productivity</div>
       </div>
-      <div class="stat-block reveal">
-        <div class="stat-num">30–70%</div>
-        <div class="stat-label">annual sales team turnover in most B2B industries</div>
+      <div class="stat-cell reveal">
+        <div class="stat-num">30-70%</div>
+        <div class="stat-lbl">annual sales team turnover<br>in most B2B industries</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <div class="container">
-    <p class="section-label reveal">Process</p>
-    <h2 class="section-title reveal">How it works</h2>
-    <div class="steps">
+<hr class="divider">
 
+<!-- PROCESS -->
+<section class="how" id="process">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">Process</p>
+      <h2 class="section-title">How it works</h2>
+    </div>
+    <div class="steps">
       <div class="step reveal">
-        <div class="step-num">01</div>
-        <div class="step-content">
+        <div class="step-n">01</div>
+        <div>
           <h3 class="step-title">We extract how you sell.</h3>
-          <p class="step-body">In a few focused sessions we pull everything that makes you sell your product well — the framing, the objections, the instincts, the way you close.</p>
+          <p class="step-body">In a few focused sessions we pull everything that makes you sell your product well, the framing, the objections, the instincts, the way you close.</p>
         </div>
       </div>
-
       <div class="step reveal">
-        <div class="step-num">02</div>
-        <div class="step-content">
+        <div class="step-n">02</div>
+        <div>
           <h3 class="step-title">We build your team's brain.</h3>
           <p class="step-body">We turn that knowledge into an AI tool branded for your company, deployed to your team in weeks, not months.</p>
         </div>
       </div>
-
       <div class="step reveal">
-        <div class="step-num">03</div>
-        <div class="step-content">
+        <div class="step-n">03</div>
+        <div>
           <h3 class="step-title">Every rep sells like you do.</h3>
           <p class="step-body">From day one. On every call. In your voice. With your answers. Without you in the room.</p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
+
+<hr class="divider">
 
 <!-- FAQ -->
-<section class="faq">
+<section class="faq" id="faq">
   <div class="container">
-    <p class="section-label reveal">Questions</p>
-    <h2 class="section-title reveal">FAQ</h2>
+    <div class="section-header reveal">
+      <p class="section-label">Questions</p>
+      <h2 class="section-title">FAQ</h2>
+    </div>
     <div class="faq-list reveal">
-
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          How long does setup take?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">
-          <p class="faq-a-inner">The knowledge extraction session takes 2 hours. From there, we build and deploy your tool in 2–4 weeks. Your team is using it before the month is out.</p>
-        </div>
+        <button class="faq-q" onclick="toggleFaq(this)">How long does setup take?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p class="faq-a-inner">The knowledge extraction session takes 2 hours. From there, we build and deploy your tool in 2-4 weeks. Your team is using it before the month is out.</p></div>
       </div>
-
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          What does this actually cost?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">
-          <p class="faq-a-inner">We don't publish pricing publicly. This is built custom for your business, your product, your team. Book a call and we'll give you a straight number.</p>
-        </div>
+        <button class="faq-q" onclick="toggleFaq(this)">What does this actually cost?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p class="faq-a-inner">We don't publish pricing publicly. This is built custom for your business, your product, your team. Book a call and we'll give you a straight number.</p></div>
       </div>
-
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          How is this different from ChatGPT or Notion?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">
-          <p class="faq-a-inner">ChatGPT knows everything and nothing specific to you. Notion is a document. This is trained on the exact way you sell your product — the framing, the objection responses, the instincts. It's your brain, not a generic brain.</p>
-        </div>
+        <button class="faq-q" onclick="toggleFaq(this)">How is this different from ChatGPT or Notion?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p class="faq-a-inner">ChatGPT knows everything and nothing specific to you. Notion is a document. This is trained on the exact way you sell your product, the framing, the objection responses, the instincts. It's your brain, not a generic brain.</p></div>
       </div>
-
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Who owns the knowledge base we build together?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">
-          <p class="faq-a-inner">You do. Everything we extract and build belongs entirely to your company. We don't retain it, train on it, or share it with anyone.</p>
-        </div>
+        <button class="faq-q" onclick="toggleFaq(this)">Who owns the knowledge base we build together?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p class="faq-a-inner">You do. Everything we extract and build belongs entirely to your company. We don't retain it, train on it, or share it with anyone.</p></div>
       </div>
-
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          What industries does this work for?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">
-          <p class="faq-a-inner">Any B2B company with a complex product, a sales team, and a CEO who is a better closer than most of their reps. Real estate, SaaS, professional services, financial products — the pattern is the same.</p>
-        </div>
+        <button class="faq-q" onclick="toggleFaq(this)">What industries does this work for?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p class="faq-a-inner">Any B2B company with a complex product, a sales team, and a CEO who is a better closer than most of their reps. Real estate, SaaS, professional services, financial products, the pattern is the same.</p></div>
       </div>
-
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Can I try it before I commit?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">
-          <p class="faq-a-inner">The extraction session is where it starts. Two hours with us and you leave with a fully documented version of your sales knowledge — regardless of what happens next. That alone is worth the conversation.</p>
-        </div>
+        <button class="faq-q" onclick="toggleFaq(this)">Can I try it before I commit?<span class="faq-ico">+</span></button>
+        <div class="faq-a"><p class="faq-a-inner">The extraction session is where it starts. Two hours with us and you leave with a fully documented version of your sales knowledge, regardless of what happens next. That alone is worth the conversation.</p></div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="final-cta" id="cta">
+<hr class="divider">
+
+<!-- CONTACT -->
+<section class="cta-section" id="contact">
   <div class="container">
-    <p class="cta-label reveal">Ready to scale</p>
+    <p class="section-label reveal" style="text-align:center;margin-bottom:20px">Get in touch</p>
     <h2 class="cta-headline reveal">Stop re-explaining your product. Start scaling it.</h2>
     <p class="cta-sub reveal">The knowledge extraction session takes 2 hours. Whatever happens next, you leave with a fully documented version of your sales knowledge.</p>
     <div class="reveal">
-      <a href="#" class="btn-primary" style="font-size: 15px; padding: 15px 36px;">Book the extraction session</a>
+      <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleSubmit(event)">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Work email" required>
+        <input type="text" name="company" placeholder="Company">
+        <textarea name="message" placeholder="Tell us about your sales team (optional)"></textarea>
+        <button type="submit" class="btn-primary" style="font-size:14px;padding:14px 28px">Book the extraction session</button>
+      </form>
+      <div class="form-ok" id="form-ok">Got it. We'll be in touch within 24 hours.</div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="container footer-inner">
-    <a href="#" class="logo">
-      <div class="logo-dot"></div>
-      <span class="logo-text">Sales AI</span>
-    </a>
-    <div class="footer-links">
-      <a href="#">contact</a>
-      <a href="#">privacy</a>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-name">Savant</div>
+        <div class="footer-tagline">Your best rep. On every call.</div>
+      </div>
+      <div>
+        <div class="footer-socials-label">Reach out directly</div>
+        <div class="footer-socials">
+          <a href="https://t.me/dan_ojos" target="_blank" class="social-link">
+            <div class="sicon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 13.664l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.958.895z"/></svg>
+            </div>
+            @dan_ojos on Telegram
+          </a>
+          <a href="https://www.linkedin.com/in/danila-korolev" target="_blank" class="social-link">
+            <div class="sicon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+            Danila Korolev on LinkedIn
+          </a>
+          <a href="mailto:danila.korolllev@gmail.com" class="social-link">
+            <div class="sicon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            danila.korolllev@gmail.com
+          </a>
+        </div>
+      </div>
     </div>
-    <p class="footer-copy">© 2025 Sales AI</p>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Savant. All rights reserved.</p>
+      <nav class="footer-nav">
+        <a href="#contact">contact</a>
+        <a href="#">privacy</a>
+      </nav>
+    </div>
   </div>
 </footer>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(el => observer.observe(el));
-
-  // FAQ accordion
-  function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    const answer = item.querySelector('.faq-a');
-    const isOpen = item.classList.contains('open');
-
-    document.querySelectorAll('.faq-item.open').forEach(openItem => {
-      openItem.classList.remove('open');
-      openItem.querySelector('.faq-a').style.maxHeight = '0';
-    });
-
-    if (!isOpen) {
-      item.classList.add('open');
-      answer.style.maxHeight = answer.scrollHeight + 'px';
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), 60);
+      obs.unobserve(e.target);
     }
-  }
-
-  // Stagger bento cards on scroll
-  document.querySelectorAll('.bento-card').forEach((card, i) => {
-    card.style.transitionDelay = (i * 80) + 'ms';
   });
+}, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const ans = item.querySelector('.faq-a');
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.faq-a').style.maxHeight = '0';
+  });
+  if (!open) { item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+}
+
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} })
+    .then(r => { if (r.ok) { form.style.display='none'; document.getElementById('form-ok').style.display='block'; } });
+}
+
+document.querySelectorAll('.bcard').forEach((c, i) => { c.style.transitionDelay = (i * 70) + 'ms'; });
+
+if (window.location.hash) { history.replaceState(null, '', window.location.pathname); window.scrollTo(0, 0); }
 </script>
 </body>
 </html>
