@@ -4,30 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Savant, Your best rep. On every call.</title>
-<meta name="description" content="Savant extracts how your CEO sells and turns it into an AI tool your whole team uses every day. New reps close deals on day 3.">
+<meta name="description" content="Savant extracts how your CEO sells and turns it into an AI tool your whole team uses every day.">
 <meta property="og:title" content="Savant, Your best rep. On every call.">
 <meta property="og:description" content="We extract how your CEO sells and turn it into a tool your whole team uses every day.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://savant-seven.vercel.app">
 <meta property="og:site_name" content="Savant">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Savant, Your best rep. On every call.">
-<meta name="twitter:description" content="We extract how your CEO sells and turn it into a tool your whole team uses every day.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0C0B09;
-  --gold:#C9A84C;
-  --gold-dim:rgba(201,168,76,0.15);
-  --gold-faint:rgba(201,168,76,0.06);
-  --cream:#F0EBE1;
-  --cream-60:rgba(240,235,225,0.6);
-  --cream-35:rgba(240,235,225,0.35);
-  --cream-15:rgba(240,235,225,0.15);
-  --cream-08:rgba(240,235,225,0.08);
+  --bg:#0C0B09;--gold:#C9A84C;--cream:#F0EBE1;
+  --cream-60:rgba(240,235,225,0.6);--cream-35:rgba(240,235,225,0.35);
+  --cream-15:rgba(240,235,225,0.15);--cream-08:rgba(240,235,225,0.08);
   --cream-04:rgba(240,235,225,0.04);
   --serif:'Instrument Serif',Georgia,serif;
   --sans:'DM Sans',system-ui,sans-serif;
@@ -46,12 +38,17 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(12,11,9,0.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(240,235,225,0.06)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
-.nav-logo{font-family:var(--serif);font-size:20px;color:var(--cream);text-decoration:none;letter-spacing:0.01em;font-style:italic}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.nav-logo{font-family:var(--serif);font-size:20px;color:var(--cream);text-decoration:none;letter-spacing:0.01em;font-style:italic;flex-shrink:0}
 .nav-links{display:flex;align-items:center;gap:4px;list-style:none}
 .nav-links a{font-size:12px;letter-spacing:0.1em;text-transform:lowercase;color:var(--cream-35);text-decoration:none;padding:6px 14px;border-radius:5px;transition:color 0.25s,background 0.25s}
 .nav-links a:hover{color:var(--cream);background:var(--cream-04)}
-.nav-cta{font-size:12px;letter-spacing:0.08em;font-family:var(--sans);font-weight:500;color:#0C0B09;background:var(--gold);padding:7px 18px;border-radius:6px;text-decoration:none;border:none;cursor:pointer;transition:opacity 0.2s}
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang-toggle{display:flex;gap:2px;background:rgba(240,235,225,0.04);border:1px solid rgba(240,235,225,0.08);border-radius:6px;padding:2px}
+.lang-btn{background:none;border:none;color:var(--cream-35);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.08em;padding:5px 10px;border-radius:4px;cursor:pointer;transition:color 0.25s,background 0.25s}
+.lang-btn:hover{color:var(--cream)}
+.lang-btn.active{background:rgba(201,168,76,0.15);color:var(--gold)}
+.nav-cta{font-size:12px;letter-spacing:0.08em;font-family:var(--sans);font-weight:500;color:#0C0B09;background:var(--gold);padding:7px 18px;border-radius:6px;text-decoration:none;border:none;cursor:pointer;transition:opacity 0.2s;white-space:nowrap}
 .nav-cta:hover{opacity:0.85}
 .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
 .nav-toggle span{display:block;width:22px;height:1.5px;background:var(--cream-60);transition:all 0.3s}
@@ -85,11 +82,12 @@ section{position:relative;z-index:1}
 .proof-text strong{color:var(--cream);font-weight:500}
 .proof-attr{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--cream-35)}
 
-/* TOOLKIT 3D CAROUSEL */
+/* TOOLKIT */
 .bento-section{padding:100px 0}
 .section-header{margin-bottom:52px}
 .section-label{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:14px}
 .section-title{font-family:var(--serif);font-size:clamp(28px,3.5vw,46px);font-weight:400;color:var(--cream);line-height:1.15;letter-spacing:-0.01em}
+
 .tool-carousel{position:relative;width:100%;max-width:900px;margin:40px auto 0}
 .scene{width:100%;height:440px;perspective:1600px;position:relative}
 .ring{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 0.9s cubic-bezier(0.4,0,0.2,1)}
@@ -105,7 +103,7 @@ section{position:relative;z-index:1}
   overflow:hidden;
   transition:border-color 0.6s ease, box-shadow 0.6s ease, opacity 0.6s ease;
   box-shadow:inset 0 1px 0 rgba(240,235,225,0.05);
-  opacity:0.2;
+  opacity:0;
 }
 .bcard.active{
   opacity:1;
@@ -126,18 +124,22 @@ section{position:relative;z-index:1}
 .carousel-arrows{display:flex;justify-content:center;gap:20px;margin-top:60px}
 .carousel-arrow{width:48px;height:48px;border-radius:50%;background:rgba(12,11,9,0.7);border:1px solid rgba(240,235,225,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--cream-60);font-size:18px;transition:border-color 0.25s,color 0.25s;line-height:1}
 .carousel-arrow:hover{border-color:rgba(201,168,76,0.4);color:var(--gold)}
+
+/* MOBILE: disable 3D, use fade */
 @media(max-width:768px){
-  .scene{height:300px;perspective:1000px}
-  .bcard{width:200px;height:260px;margin:-130px 0 0 -100px;padding:18px 18px}
-  .bcard-title{font-size:15px;margin-bottom:6px}
-  .bcard-desc{font-size:10px;line-height:1.55}
-  .bcard-desc+.bcard-desc{margin-top:6px}
-  .bcard-icon{width:28px;height:28px;font-size:12px;margin-bottom:12px}
-  .bcard-tags{margin-top:12px;gap:4px}
-  .bcard-tag{font-size:7px;padding:2px 6px}
-  .bcard-num{font-size:8px;top:14px;right:16px}
+  .scene{height:340px;perspective:none}
+  .ring{transform-style:flat;transform:none !important;transition:none}
+  .bcard{
+    width:calc(100% - 40px);max-width:320px;height:320px;
+    margin:-160px 0 0;left:50%;transform:translateX(-50%) !important;
+    padding:22px 20px;
+    transition:opacity 0.5s ease, border-color 0.5s ease;
+  }
+  .bcard:not(.active){opacity:0;pointer-events:none}
+  .bcard-title{font-size:18px}
+  .bcard-desc{font-size:12px}
   .tool-carousel{margin-top:20px}
-  .carousel-arrows{margin-top:40px}
+  .carousel-arrows{margin-top:30px}
 }
 
 /* PROBLEM */
@@ -198,14 +200,11 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
 .footer-nav a{font-size:11px;color:var(--cream-35);text-decoration:none;transition:color 0.2s}
 .footer-nav a:hover{color:var(--cream)}
 
-/* MOBILE */
 @media(max-width:768px){
   .hero{padding:120px 0 80px}
   .nav-links,.nav-cta{display:none}
   .nav-toggle{display:flex}
   .proof-inner{grid-template-columns:1fr;gap:16px;padding:36px 28px}
-  .tool-cards{grid-template-columns:1fr}
-  .bcard{transform:none !important}
   .stats-row{grid-template-columns:1fr;gap:2px}
   .stat-cell:first-child{border-radius:14px 14px 0 0}
   .stat-cell:last-child{border-radius:0 0 14px 14px}
@@ -223,36 +222,42 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
   <div class="container nav-inner">
     <a href="#top" class="nav-logo">Savant</a>
     <ul class="nav-links">
-      <li><a href="#toolkit">toolkit</a></li>
-      <li><a href="#process">process</a></li>
-      <li><a href="#faq">faq</a></li>
+      <li><a href="#toolkit" data-en="toolkit" data-ru="инструменты">toolkit</a></li>
+      <li><a href="#process" data-en="process" data-ru="процесс">process</a></li>
+      <li><a href="#faq" data-en="faq" data-ru="вопросы">faq</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Book a session</a>
-    <button class="nav-toggle" onclick="toggleMenu()" id="nav-toggle" aria-label="Menu">
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
+      </div>
+      <a href="#contact" class="nav-cta" data-en="Book a session" data-ru="Записаться">Book a session</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#toolkit" onclick="closeMenu()">toolkit</a>
-  <a href="#process" onclick="closeMenu()">process</a>
-  <a href="#faq" onclick="closeMenu()">faq</a>
-  <a href="#contact" onclick="closeMenu()" style="color:var(--gold)">book a session</a>
+  <a href="#toolkit" onclick="closeMenu()" data-en="toolkit" data-ru="инструменты">toolkit</a>
+  <a href="#process" onclick="closeMenu()" data-en="process" data-ru="процесс">process</a>
+  <a href="#faq" onclick="closeMenu()" data-en="faq" data-ru="вопросы">faq</a>
+  <a href="#contact" onclick="closeMenu()" style="color:var(--gold)" data-en="book a session" data-ru="записаться на сессию">book a session</a>
 </div>
 
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="container">
-    <p class="hero-eyebrow fu d1">Internal sales AI</p>
+    <p class="hero-eyebrow fu d1" data-en="Internal sales AI" data-ru="Внутренний ИИ для продаж">Internal sales AI</p>
     <h1 class="hero-headline">
-      <span class="fu d2">Your best rep.</span><br>
-      <em class="fu d3">On every call.</em>
+      <span class="fu d2" data-en="Your best rep." data-ru="Ваш лучший продавец.">Your best rep.</span><br>
+      <em class="fu d3" data-en="On every call." data-ru="На каждом звонке.">On every call.</em>
     </h1>
-    <p class="hero-sub fu d4">We extract how your CEO sells and turn it into a tool your whole team uses every day. New reps go from 3 months of ramp to closing deals on day 3.</p>
+    <p class="hero-sub fu d4" data-en="We extract how your CEO sells and turn it into a tool your whole team uses every day. New reps go from 3 months of ramp to closing deals on day 3." data-ru="Мы извлекаем то, как продаёт ваш CEO, и превращаем это в инструмент, которым каждый день пользуется вся команда. Новые продавцы переходят от 3 месяцев адаптации к закрытию сделок на 3-й день.">We extract how your CEO sells and turn it into a tool your whole team uses every day. New reps go from 3 months of ramp to closing deals on day 3.</p>
     <div class="hero-actions fu d5">
-      <a href="#contact" class="btn-primary">Book the extraction session</a>
-      <a href="#process" class="btn-outline">See how it works</a>
+      <a href="#contact" class="btn-primary" data-en="Book the extraction session" data-ru="Записаться на сессию">Book the extraction session</a>
+      <a href="#process" class="btn-outline" data-en="See how it works" data-ru="Как это работает">See how it works</a>
     </div>
   </div>
 </section>
@@ -263,10 +268,10 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
 <section class="proof">
   <div class="container">
     <div class="proof-inner reveal">
-      <div class="proof-num">Day 3</div>
+      <div class="proof-num" data-en="Day 3" data-ru="День 3">Day 3</div>
       <div class="proof-body">
-        <p class="proof-text">The first rep who used this tool <strong>closed a deal on day 3</strong> of starting the job. Before the tool, ramp took 3 months, and most reps quit before they got there.</p>
-        <p class="proof-attr">Client #0, B2B Real Estate Platform</p>
+        <p class="proof-text" data-en-html="The first rep who used this tool <strong>closed a deal on day 3</strong> of starting the job. Before the tool, ramp took 3 months, and most reps quit before they got there." data-ru-html="Первый продавец, использовавший этот инструмент, <strong>закрыл сделку на 3-й день</strong> работы. До этого адаптация занимала 3 месяца, и большинство продавцов увольнялись раньше.">The first rep who used this tool <strong>closed a deal on day 3</strong> of starting the job. Before the tool, ramp took 3 months, and most reps quit before they got there.</p>
+        <p class="proof-attr" data-en="Client #0, B2B Real Estate Platform" data-ru="Клиент #0, B2B платформа недвижимости">Client #0, B2B Real Estate Platform</p>
       </div>
     </div>
   </div>
@@ -278,44 +283,45 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
 <section class="bento-section" id="toolkit">
   <div class="container">
     <div class="section-header reveal">
-      <p class="section-label">The toolkit</p>
-      <h2 class="section-title">Three tools. One team<br>that sells like you.</h2>
+      <p class="section-label" data-en="The toolkit" data-ru="Набор инструментов">The toolkit</p>
+      <h2 class="section-title" data-en-html="Three tools. One team<br>that sells like you." data-ru-html="Три инструмента. Одна команда,<br>которая продаёт как вы.">Three tools. One team<br>that sells like you.</h2>
     </div>
+
     <div class="tool-carousel reveal">
       <div class="scene">
         <div class="ring" id="cring">
-          <div class="bcard active" data-index="0" style="transform:rotateY(0deg) translateZ(500px);opacity:1">
+          <div class="bcard active" data-index="0">
             <span class="bcard-num">01</span>
             <div class="bcard-icon">◈</div>
-            <h3 class="bcard-title">Company Pedia</h3>
-            <p class="bcard-desc">Full product knowledge, trained on everything the CEO knows. Ask anything. Get the answer you'd want your reps to give.</p>
+            <h3 class="bcard-title" data-en="Company Pedia" data-ru="Энциклопедия компании">Company Pedia</h3>
+            <p class="bcard-desc" data-en="Full product knowledge, trained on everything the CEO knows. Ask anything. Get the answer you'd want your reps to give." data-ru="Полное знание продукта, обученное на всём, что знает CEO. Спрашивайте что угодно. Получайте ответ, который хотите слышать от своих продавцов.">Full product knowledge, trained on everything the CEO knows. Ask anything. Get the answer you'd want your reps to give.</p>
             <div class="bcard-tags">
-              <span class="bcard-tag">knowledge base</span>
-              <span class="bcard-tag">instant recall</span>
-              <span class="bcard-tag">always current</span>
+              <span class="bcard-tag" data-en="knowledge base" data-ru="база знаний">knowledge base</span>
+              <span class="bcard-tag" data-en="instant recall" data-ru="мгновенный поиск">instant recall</span>
+              <span class="bcard-tag" data-en="always current" data-ru="всегда актуально">always current</span>
             </div>
           </div>
-          <div class="bcard" data-index="1" style="transform:rotateY(120deg) translateZ(500px);opacity:0.22">
+          <div class="bcard" data-index="1">
             <span class="bcard-num">02</span>
             <div class="bcard-icon">⊕</div>
-            <h3 class="bcard-title">Objection Handler</h3>
-            <p class="bcard-desc">Select the objection. Select the client type. Get the word-for-word response that actually works, the one the CEO would give.</p>
-            <p class="bcard-desc">No improvising. No losing the sale because a rep didn't know what to say.</p>
+            <h3 class="bcard-title" data-en="Objection Handler" data-ru="Обработка возражений">Objection Handler</h3>
+            <p class="bcard-desc" data-en="Select the objection. Select the client type. Get the word-for-word response that actually works, the one the CEO would give." data-ru="Выберите возражение. Выберите тип клиента. Получите дословный ответ, который работает, тот, что дал бы CEO.">Select the objection. Select the client type. Get the word-for-word response that actually works, the one the CEO would give.</p>
+            <p class="bcard-desc" data-en="No improvising. No losing the sale because a rep didn't know what to say." data-ru="Без импровизации. Без потерянных сделок из-за того, что продавец не знал, что ответить.">No improvising. No losing the sale because a rep didn't know what to say.</p>
             <div class="bcard-tags">
-              <span class="bcard-tag">objection library</span>
-              <span class="bcard-tag">client profiles</span>
-              <span class="bcard-tag">word-for-word</span>
+              <span class="bcard-tag" data-en="objection library" data-ru="база возражений">objection library</span>
+              <span class="bcard-tag" data-en="client profiles" data-ru="профили клиентов">client profiles</span>
+              <span class="bcard-tag" data-en="word-for-word" data-ru="слово в слово">word-for-word</span>
             </div>
           </div>
-          <div class="bcard" data-index="2" style="transform:rotateY(240deg) translateZ(500px);opacity:0.22">
+          <div class="bcard" data-index="2">
             <span class="bcard-num">03</span>
             <div class="bcard-icon">⊶</div>
-            <h3 class="bcard-title">Lead Conversations <span class="badge-soon">soon</span></h3>
-            <p class="bcard-desc">Paste a lead message. Get a ready-to-send reply with full context and memory. No more starting from scratch on every thread.</p>
+            <h3 class="bcard-title" data-en-html="Lead Conversations <span class='badge-soon' data-en='soon' data-ru='скоро'>soon</span>" data-ru-html="Переписки с лидами <span class='badge-soon' data-en='soon' data-ru='скоро'>скоро</span>">Lead Conversations <span class="badge-soon" data-en="soon" data-ru="скоро">soon</span></h3>
+            <p class="bcard-desc" data-en="Paste a lead message. Get a ready-to-send reply with full context and memory. No more starting from scratch on every thread." data-ru="Вставьте сообщение от лида. Получите готовый ответ с полным контекстом и памятью. Больше не нужно начинать каждую переписку с нуля.">Paste a lead message. Get a ready-to-send reply with full context and memory. No more starting from scratch on every thread.</p>
             <div class="bcard-tags">
-              <span class="bcard-tag">message drafting</span>
-              <span class="bcard-tag">full memory</span>
-              <span class="bcard-tag">your voice</span>
+              <span class="bcard-tag" data-en="message drafting" data-ru="черновики сообщений">message drafting</span>
+              <span class="bcard-tag" data-en="full memory" data-ru="полная память">full memory</span>
+              <span class="bcard-tag" data-en="your voice" data-ru="ваш голос">your voice</span>
             </div>
           </div>
         </div>
@@ -333,19 +339,19 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
 <!-- PROBLEM -->
 <section class="problem">
   <div class="container">
-    <h2 class="problem-headline reveal">Every rep is a worse version of you in a client conversation.</h2>
+    <h2 class="problem-headline reveal" data-en="Every rep is a worse version of you in a client conversation." data-ru="Каждый продавец — это худшая версия вас в разговоре с клиентом.">Every rep is a worse version of you in a client conversation.</h2>
     <div class="stats-row">
       <div class="stat-cell reveal">
-        <div class="stat-num">4-6 mo</div>
-        <div class="stat-lbl">average ramp time<br>for new sales hires</div>
+        <div class="stat-num" data-en="4-6 mo" data-ru="4-6 мес">4-6 mo</div>
+        <div class="stat-lbl" data-en-html="average ramp time<br>for new sales hires" data-ru-html="средняя адаптация<br>новых продавцов">average ramp time<br>for new sales hires</div>
       </div>
       <div class="stat-cell reveal">
         <div class="stat-num">€20k+</div>
-        <div class="stat-lbl">cost before they reach<br>full productivity</div>
+        <div class="stat-lbl" data-en-html="cost before they reach<br>full productivity" data-ru-html="затраты до выхода<br>на полную эффективность">cost before they reach<br>full productivity</div>
       </div>
       <div class="stat-cell reveal">
         <div class="stat-num">30-70%</div>
-        <div class="stat-lbl">annual sales team turnover<br>in most B2B industries</div>
+        <div class="stat-lbl" data-en-html="annual sales team turnover<br>in most B2B industries" data-ru-html="годовая текучка<br>в B2B командах продаж">annual sales team turnover<br>in most B2B industries</div>
       </div>
     </div>
   </div>
@@ -357,29 +363,29 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
 <section class="how" id="process">
   <div class="container">
     <div class="section-header reveal">
-      <p class="section-label">Process</p>
-      <h2 class="section-title">How it works</h2>
+      <p class="section-label" data-en="Process" data-ru="Процесс">Process</p>
+      <h2 class="section-title" data-en="How it works" data-ru="Как это работает">How it works</h2>
     </div>
     <div class="steps">
       <div class="step reveal">
         <div class="step-n">01</div>
         <div>
-          <h3 class="step-title">We extract how you sell.</h3>
-          <p class="step-body">In a few focused sessions we pull everything that makes you sell your product well, the framing, the objections, the instincts, the way you close.</p>
+          <h3 class="step-title" data-en="We extract how you sell." data-ru="Мы извлекаем то, как продаёте вы.">We extract how you sell.</h3>
+          <p class="step-body" data-en="In a few focused sessions we pull everything that makes you sell your product well, the framing, the objections, the instincts, the way you close." data-ru="За несколько сфокусированных сессий мы достаём всё, что делает вас хорошим продавцом: подачу, возражения, инстинкты, способ закрытия сделок.">In a few focused sessions we pull everything that makes you sell your product well, the framing, the objections, the instincts, the way you close.</p>
         </div>
       </div>
       <div class="step reveal">
         <div class="step-n">02</div>
         <div>
-          <h3 class="step-title">We build your team's brain.</h3>
-          <p class="step-body">We turn that knowledge into an AI tool branded for your company, deployed to your team in weeks, not months.</p>
+          <h3 class="step-title" data-en="We build your team's brain." data-ru="Мы строим мозг вашей команды.">We build your team's brain.</h3>
+          <p class="step-body" data-en="We turn that knowledge into an AI tool branded for your company, deployed to your team in weeks, not months." data-ru="Мы превращаем это знание в ИИ-инструмент под вашим брендом и разворачиваем для команды за недели, не месяцы.">We turn that knowledge into an AI tool branded for your company, deployed to your team in weeks, not months.</p>
         </div>
       </div>
       <div class="step reveal">
         <div class="step-n">03</div>
         <div>
-          <h3 class="step-title">Every rep sells like you do.</h3>
-          <p class="step-body">From day one. On every call. In your voice. With your answers. Without you in the room.</p>
+          <h3 class="step-title" data-en="Every rep sells like you do." data-ru="Каждый продавец продаёт как вы.">Every rep sells like you do.</h3>
+          <p class="step-body" data-en="From day one. On every call. In your voice. With your answers. Without you in the room." data-ru="С первого дня. На каждом звонке. Вашим голосом. Вашими ответами. Без вас в комнате.">From day one. On every call. In your voice. With your answers. Without you in the room.</p>
         </div>
       </div>
     </div>
@@ -392,33 +398,33 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
 <section class="faq" id="faq">
   <div class="container">
     <div class="section-header reveal">
-      <p class="section-label">Questions</p>
+      <p class="section-label" data-en="Questions" data-ru="Вопросы">Questions</p>
       <h2 class="section-title">FAQ</h2>
     </div>
     <div class="faq-list reveal">
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">How long does setup take?<span class="faq-ico">+</span></button>
-        <div class="faq-a"><p class="faq-a-inner">The knowledge extraction session takes 2 hours. From there, we build and deploy your tool in 2-4 weeks. Your team is using it before the month is out.</p></div>
+        <button class="faq-q" onclick="toggleFaq(this)"><span data-en="How long does setup take?" data-ru="Сколько занимает настройка?">How long does setup take?</span><span class="faq-ico">+</span></button>
+        <div class="faq-a"><p class="faq-a-inner" data-en="The knowledge extraction session takes 2 hours. From there, we build and deploy your tool in 2-4 weeks. Your team is using it before the month is out." data-ru="Сессия извлечения знаний занимает 2 часа. Затем мы создаём и разворачиваем инструмент за 2-4 недели. Ваша команда пользуется им уже в этом месяце.">The knowledge extraction session takes 2 hours. From there, we build and deploy your tool in 2-4 weeks. Your team is using it before the month is out.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">What does this actually cost?<span class="faq-ico">+</span></button>
-        <div class="faq-a"><p class="faq-a-inner">We don't publish pricing publicly. This is built custom for your business, your product, your team. Book a call and we'll give you a straight number.</p></div>
+        <button class="faq-q" onclick="toggleFaq(this)"><span data-en="What does this actually cost?" data-ru="Сколько это стоит?">What does this actually cost?</span><span class="faq-ico">+</span></button>
+        <div class="faq-a"><p class="faq-a-inner" data-en="We don't publish pricing publicly. This is built custom for your business, your product, your team. Book a call and we'll give you a straight number." data-ru="Мы не публикуем цены. Всё делается под ваш бизнес, продукт и команду. Запишитесь на звонок, и мы дадим конкретную цифру.">We don't publish pricing publicly. This is built custom for your business, your product, your team. Book a call and we'll give you a straight number.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">How is this different from ChatGPT or Notion?<span class="faq-ico">+</span></button>
-        <div class="faq-a"><p class="faq-a-inner">ChatGPT knows everything and nothing specific to you. Notion is a document. This is trained on the exact way you sell your product, the framing, the objection responses, the instincts. It's your brain, not a generic brain.</p></div>
+        <button class="faq-q" onclick="toggleFaq(this)"><span data-en="How is this different from ChatGPT or Notion?" data-ru="Чем это отличается от ChatGPT или Notion?">How is this different from ChatGPT or Notion?</span><span class="faq-ico">+</span></button>
+        <div class="faq-a"><p class="faq-a-inner" data-en="ChatGPT knows everything and nothing specific to you. Notion is a document. This is trained on the exact way you sell your product, the framing, the objection responses, the instincts. It's your brain, not a generic brain." data-ru="ChatGPT знает всё и ничего конкретного о вас. Notion — это документ. Это обучено именно на том, как вы продаёте свой продукт: подача, ответы на возражения, инстинкты. Это ваш мозг, а не общий.">ChatGPT knows everything and nothing specific to you. Notion is a document. This is trained on the exact way you sell your product, the framing, the objection responses, the instincts. It's your brain, not a generic brain.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Who owns the knowledge base we build together?<span class="faq-ico">+</span></button>
-        <div class="faq-a"><p class="faq-a-inner">You do. Everything we extract and build belongs entirely to your company. We don't retain it, train on it, or share it with anyone.</p></div>
+        <button class="faq-q" onclick="toggleFaq(this)"><span data-en="Who owns the knowledge base we build together?" data-ru="Кому принадлежит база знаний, которую мы создаём?">Who owns the knowledge base we build together?</span><span class="faq-ico">+</span></button>
+        <div class="faq-a"><p class="faq-a-inner" data-en="You do. Everything we extract and build belongs entirely to your company. We don't retain it, train on it, or share it with anyone." data-ru="Вам. Всё, что мы извлекаем и создаём, полностью принадлежит вашей компании. Мы не храним это, не обучаем на этом и не делимся ни с кем.">You do. Everything we extract and build belongs entirely to your company. We don't retain it, train on it, or share it with anyone.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">What industries does this work for?<span class="faq-ico">+</span></button>
-        <div class="faq-a"><p class="faq-a-inner">Any B2B company with a complex product, a sales team, and a CEO who is a better closer than most of their reps. Real estate, SaaS, professional services, financial products, the pattern is the same.</p></div>
+        <button class="faq-q" onclick="toggleFaq(this)"><span data-en="What industries does this work for?" data-ru="Для каких индустрий это работает?">What industries does this work for?</span><span class="faq-ico">+</span></button>
+        <div class="faq-a"><p class="faq-a-inner" data-en="Any B2B company with a complex product, a sales team, and a CEO who is a better closer than most of their reps. Real estate, SaaS, professional services, financial products, the pattern is the same." data-ru="Любая B2B компания со сложным продуктом, командой продаж и CEO, который закрывает сделки лучше большинства продавцов. Недвижимость, SaaS, профессиональные услуги, финансовые продукты — паттерн один и тот же.">Any B2B company with a complex product, a sales team, and a CEO who is a better closer than most of their reps. Real estate, SaaS, professional services, financial products, the pattern is the same.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Can I try it before I commit?<span class="faq-ico">+</span></button>
-        <div class="faq-a"><p class="faq-a-inner">The extraction session is where it starts. Two hours with us and you leave with a fully documented version of your sales knowledge, regardless of what happens next. That alone is worth the conversation.</p></div>
+        <button class="faq-q" onclick="toggleFaq(this)"><span data-en="Can I try it before I commit?" data-ru="Можно попробовать до покупки?">Can I try it before I commit?</span><span class="faq-ico">+</span></button>
+        <div class="faq-a"><p class="faq-a-inner" data-en="The extraction session is where it starts. Two hours with us and you leave with a fully documented version of your sales knowledge, regardless of what happens next. That alone is worth the conversation." data-ru="Сессия извлечения — это начало. Два часа с нами, и вы уходите с полностью задокументированной версией ваших знаний о продажах, что бы ни произошло дальше. Это уже того стоит.">The extraction session is where it starts. Two hours with us and you leave with a fully documented version of your sales knowledge, regardless of what happens next. That alone is worth the conversation.</p></div>
       </div>
     </div>
   </div>
@@ -429,18 +435,18 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
 <!-- CONTACT -->
 <section class="cta-section" id="contact">
   <div class="container">
-    <p class="section-label reveal" style="text-align:center;margin-bottom:20px">Get in touch</p>
-    <h2 class="cta-headline reveal">Stop re-explaining your product. Start scaling it.</h2>
-    <p class="cta-sub reveal">The knowledge extraction session takes 2 hours. Whatever happens next, you leave with a fully documented version of your sales knowledge.</p>
+    <p class="section-label reveal" style="text-align:center;margin-bottom:20px" data-en="Get in touch" data-ru="Связаться">Get in touch</p>
+    <h2 class="cta-headline reveal" data-en="Stop re-explaining your product. Start scaling it." data-ru="Перестаньте объяснять свой продукт заново. Начните масштабировать.">Stop re-explaining your product. Start scaling it.</h2>
+    <p class="cta-sub reveal" data-en="The knowledge extraction session takes 2 hours. Whatever happens next, you leave with a fully documented version of your sales knowledge." data-ru="Сессия извлечения знаний занимает 2 часа. Что бы ни произошло дальше, вы уходите с полностью задокументированной версией ваших знаний о продажах.">The knowledge extraction session takes 2 hours. Whatever happens next, you leave with a fully documented version of your sales knowledge.</p>
     <div class="reveal">
       <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleSubmit(event)">
-        <input type="text" name="name" placeholder="Your name" required>
-        <input type="email" name="email" placeholder="Work email" required>
-        <input type="text" name="company" placeholder="Company">
-        <textarea name="message" placeholder="Tell us about your sales team (optional)"></textarea>
-        <button type="submit" class="btn-primary" style="font-size:14px;padding:14px 28px">Book the extraction session</button>
+        <input type="text" name="name" required data-en-placeholder="Your name" data-ru-placeholder="Ваше имя" placeholder="Your name">
+        <input type="email" name="email" required data-en-placeholder="Work email" data-ru-placeholder="Рабочий email" placeholder="Work email">
+        <input type="text" name="company" data-en-placeholder="Company" data-ru-placeholder="Компания" placeholder="Company">
+        <textarea name="message" data-en-placeholder="Tell us about your sales team (optional)" data-ru-placeholder="Расскажите о вашей команде продаж (необязательно)" placeholder="Tell us about your sales team (optional)"></textarea>
+        <button type="submit" class="btn-primary" style="font-size:14px;padding:14px 28px" data-en="Book the extraction session" data-ru="Записаться на сессию">Book the extraction session</button>
       </form>
-      <div class="form-ok" id="form-ok">Got it. We'll be in touch within 24 hours.</div>
+      <div class="form-ok" id="form-ok" data-en="Got it. We'll be in touch within 24 hours." data-ru="Получили. Свяжемся в течение 24 часов.">Got it. We'll be in touch within 24 hours.</div>
     </div>
   </div>
 </section>
@@ -451,109 +457,158 @@ footer{border-top:1px solid rgba(240,235,225,0.06);padding:48px 0 40px;position:
     <div class="footer-top">
       <div>
         <div class="footer-name">Savant</div>
-        <div class="footer-tagline">Your best rep. On every call.</div>
+        <div class="footer-tagline" data-en="Your best rep. On every call." data-ru="Ваш лучший продавец. На каждом звонке.">Your best rep. On every call.</div>
       </div>
       <div>
-        <div class="footer-socials-label">Reach out directly</div>
+        <div class="footer-socials-label" data-en="Reach out directly" data-ru="Связаться напрямую">Reach out directly</div>
         <div class="footer-socials">
           <a href="https://t.me/dan_ojos" target="_blank" class="social-link">
-            <div class="sicon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 13.664l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.958.895z"/></svg>
-            </div>
-            @dan_ojos on Telegram
+            <div class="sicon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 13.664l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.958.895z"/></svg></div>
+            @dan_ojos <span data-en="on Telegram" data-ru="в Telegram">on Telegram</span>
           </a>
           <a href="https://www.linkedin.com/in/danila-korolev" target="_blank" class="social-link">
-            <div class="sicon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </div>
-            Danila Korolev on LinkedIn
+            <div class="sicon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+            Danila Korolev <span data-en="on LinkedIn" data-ru="в LinkedIn">on LinkedIn</span>
           </a>
           <a href="mailto:danila.korolllev@gmail.com" class="social-link">
-            <div class="sicon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
+            <div class="sicon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
             danila.korolllev@gmail.com
           </a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2025 Savant. All rights reserved.</p>
+      <p class="footer-copy" data-en="© 2025 Savant. All rights reserved." data-ru="© 2025 Savant. Все права защищены.">© 2025 Savant. All rights reserved.</p>
       <nav class="footer-nav">
-        <a href="#contact">contact</a>
-        <a href="#">privacy</a>
+        <a href="#contact" data-en="contact" data-ru="контакты">contact</a>
+        <a href="#" data-en="privacy" data-ru="конфиденциальность">privacy</a>
       </nav>
     </div>
   </div>
 </footer>
 
 <script>
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), 60);
+// Reveals
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      setTimeout(function(){ e.target.classList.add('visible'); }, 60);
       obs.unobserve(e.target);
     }
   });
-}, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+},{threshold:0.07,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
 
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  const ans = item.querySelector('.faq-a');
-  const open = item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i => {
+// FAQ
+function toggleFaq(btn){
+  var item = btn.closest('.faq-item');
+  var ans = item.querySelector('.faq-a');
+  var open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(i){
     i.classList.remove('open');
     i.querySelector('.faq-a').style.maxHeight = '0';
   });
-  if (!open) { item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+  if(!open){ item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
 }
 
-function toggleMenu() {
-  document.getElementById('mobile-menu').classList.toggle('open');
-}
-function closeMenu() {
-  document.getElementById('mobile-menu').classList.remove('open');
-}
+// Mobile menu
+function toggleMenu(){ document.getElementById('mobile-menu').classList.toggle('open'); }
+function closeMenu(){ document.getElementById('mobile-menu').classList.remove('open'); }
 
-function handleSubmit(e) {
+// Form
+function handleSubmit(e){
   e.preventDefault();
-  const form = e.target;
-  fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} })
-    .then(r => { if (r.ok) { form.style.display='none'; document.getElementById('form-ok').style.display='block'; } });
+  var form = e.target;
+  fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+    .then(function(r){ if(r.ok){ form.style.display='none'; document.getElementById('form-ok').style.display='block'; } });
 }
 
-if (window.location.hash) { history.replaceState(null, '', window.location.pathname); window.scrollTo(0, 0); }
+// Strip hash on load
+if(window.location.hash){ history.replaceState(null,'',window.location.pathname); window.scrollTo(0,0); }
 
-// 3D Carousel
+// ========== CAROUSEL ==========
 var currentTool = 0;
 var TOTAL_TOOLS = 3;
-var TOOL_ANGLE = 120;
 
-function getRadius() {
-  return window.innerWidth <= 768 ? 280 : 500;
-}
+function isMobile(){ return window.innerWidth <= 768; }
 
-function goToTool(index) {
+function goToTool(index){
   currentTool = ((index % TOTAL_TOOLS) + TOTAL_TOOLS) % TOTAL_TOOLS;
-  var R = getRadius();
   var ring = document.getElementById('cring');
-  if (ring) ring.style.transform = 'rotateY(' + (-currentTool * TOOL_ANGLE) + 'deg)';
-  document.querySelectorAll('.bcard').forEach(function(c, i) {
-    var diff = ((i - currentTool) + TOTAL_TOOLS) % TOTAL_TOOLS;
-    c.style.opacity = diff === 0 ? 1 : 0.22;
-    c.classList.toggle('active', i === currentTool);
-    c.style.transform = 'rotateY(' + (i * TOOL_ANGLE) + 'deg) translateZ(' + R + 'px)';
-  });
+  var cards = document.querySelectorAll('.bcard');
+
+  if(isMobile()){
+    // Simple fade approach, no 3D
+    if(ring) ring.style.transform = 'none';
+    cards.forEach(function(c,i){
+      c.classList.toggle('active', i === currentTool);
+    });
+  } else {
+    // 3D approach
+    var R = 500;
+    if(ring) ring.style.transform = 'rotateY(' + (-currentTool * 120) + 'deg)';
+    cards.forEach(function(c,i){
+      var diff = ((i - currentTool) + TOTAL_TOOLS) % TOTAL_TOOLS;
+      c.style.opacity = diff === 0 ? 1 : 0.22;
+      c.classList.toggle('active', i === currentTool);
+      c.style.transform = 'rotateY(' + (i * 120) + 'deg) translateZ(' + R + 'px)';
+    });
+  }
 }
 
-function prevTool() { goToTool(currentTool - 1); }
-function nextTool() { goToTool(currentTool + 1); }
+function prevTool(){ goToTool(currentTool - 1); }
+function nextTool(){ goToTool(currentTool + 1); }
 
-// Re-position on resize
-window.addEventListener('resize', function() { goToTool(currentTool); });
-// Initial position on load (overrides inline styles for mobile)
-window.addEventListener('load', function() { goToTool(0); });
+// Init: snap without animation
+(function(){
+  var cards = document.querySelectorAll('.bcard');
+  var ring = document.getElementById('cring');
+  if(ring) ring.style.transition = 'none';
+  cards.forEach(function(c){ c.style.transition = 'none'; });
+  goToTool(0);
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      if(ring) ring.style.transition = '';
+      cards.forEach(function(c){ c.style.transition = ''; });
+    });
+  });
+})();
+
+// Resize: re-sync 3D vs fade
+window.addEventListener('resize', function(){ goToTool(currentTool); });
+
+// ========== LANGUAGE TOGGLE ==========
+function setLang(lang){
+  // Text content
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    var v = el.getAttribute('data-' + lang);
+    if(v !== null) el.textContent = v;
+  });
+  // HTML content
+  document.querySelectorAll('[data-en-html]').forEach(function(el){
+    var v = el.getAttribute('data-' + lang + '-html');
+    if(v !== null) el.innerHTML = v;
+  });
+  // Placeholders
+  document.querySelectorAll('[data-en-placeholder]').forEach(function(el){
+    var v = el.getAttribute('data-' + lang + '-placeholder');
+    if(v !== null) el.placeholder = v;
+  });
+  // Button state
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  // html lang
+  document.documentElement.lang = lang;
+  // Persist
+  try { localStorage.setItem('savant-lang', lang); } catch(e){}
+}
+
+// Restore lang from storage
+try {
+  var savedLang = localStorage.getItem('savant-lang');
+  if(savedLang === 'ru') setLang('ru');
+} catch(e){}
 </script>
 </body>
 </html>
